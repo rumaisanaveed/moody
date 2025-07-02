@@ -1,0 +1,197 @@
+import MoodCards from "@/components/moods/MoodCards";
+import { Colors } from "@/constants/Colors";
+import { emojis, weekData } from "@/constants/Data";
+import { globalStyles } from "@/styles/globalStyles";
+import { DayItemProps } from "@/types/tabs/Home";
+import { getCurrentDay } from "@/utilities/Utils";
+import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import {
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+
+export default function Home() {
+  const emojisList = Object.values(emojis);
+  // emoji list
+  const emojisNewList = [...emojisList, "😔", "😔"];
+  const currentDayName = getCurrentDay();
+
+  return (
+    <LinearGradient
+      colors={["#EED3F2", "white"]}
+      start={{ x: 0.5, y: 0 }}
+      end={{ x: 0.5, y: 1 }}
+      style={styles.container}
+    >
+      <SafeAreaView
+        style={{
+          flex: 1,
+        }}
+      >
+        <ScrollView
+          contentContainerStyle={styles.content}
+          showsVerticalScrollIndicator={false}
+        >
+          {/* header */}
+          <View style={styles.row}>
+            <Text style={[styles.greeting, globalStyles.fontPoppinsRegular]}>
+              Hey, <Text style={styles.bold}>Alexa!</Text> 👋
+            </Text>
+
+            {/* profile container */}
+            <View style={styles.profile}>
+              <Text style={(styles.avatar, globalStyles.fontPoppinsSemibold)}>
+                R
+              </Text>
+            </View>
+          </View>
+
+          {/* 7 days mood */}
+          <FlatList
+            data={weekData ?? []}
+            horizontal
+            style={{
+              paddingTop: 15,
+              paddingBottom: 10,
+            }}
+            contentContainerStyle={styles.daysList}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({
+              item,
+              index,
+            }: {
+              item: DayItemProps;
+              index: number;
+            }) => {
+              const isCurrentDay =
+                item.name.toLowerCase() === currentDayName.toLowerCase();
+              return (
+                <View style={styles.dayAndEmojiContainer}>
+                  <View
+                    style={[
+                      styles.dayItem,
+                      isCurrentDay && styles.currentDayItem,
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        isCurrentDay && styles.currentDayText,
+                        globalStyles.fontPoppinsRegular,
+                      ]}
+                    >
+                      {item.name.slice(0, 3)}
+                    </Text>
+                    <Text
+                      style={[
+                        styles.dayNo,
+                        globalStyles.fontPoppinsRegular,
+                        isCurrentDay && styles.currentDayText,
+                      ]}
+                    >
+                      {item.id + 1}
+                    </Text>
+                  </View>
+                  <View
+                    style={[
+                      styles.emojiContainer,
+                      isCurrentDay && styles.selectedEmojiContainer,
+                    ]}
+                  >
+                    <Text style={styles.emoji}>{emojisNewList[index]}</Text>
+                  </View>
+                </View>
+              );
+            }}
+            keyExtractor={(item) => item.id.toString()}
+          />
+
+          {/* Cards */}
+          <MoodCards heading="This Week's Mood Journal" />
+        </ScrollView>
+      </SafeAreaView>
+    </LinearGradient>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingVertical: 30,
+    paddingHorizontal: 5,
+  },
+  content: {
+    padding: 16,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  profile: {
+    height: 40,
+    width: 40,
+    backgroundColor: Colors.WHITE,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  avatar: {
+    textAlign: "center",
+    // fontSize: 40,
+    color: Colors.BLACK,
+  },
+  greeting: {
+    fontSize: 24,
+    fontWeight: "400",
+    color: Colors.BLACK_DARK,
+    marginBottom: 8,
+  },
+  bold: {
+    fontWeight: "bold",
+  },
+  daysList: {
+    gap: 10,
+  },
+  dayAndEmojiContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  dayItem: {
+    backgroundColor: Colors.WHITE,
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    gap: 7,
+    borderRadius: 30,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  dayNo: {
+    color: "black",
+    fontWeight: "bold",
+    fontSize: 20,
+  },
+  currentDayItem: {
+    backgroundColor: Colors.PURPLE,
+  },
+  currentDayText: {
+    color: Colors.WHITE,
+  },
+  emojiContainer: {
+    backgroundColor: Colors.WHITE,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 4,
+  },
+  emoji: {
+    fontSize: 25,
+  },
+  selectedEmojiContainer: {
+    backgroundColor: Colors.PURPLE,
+  },
+});
