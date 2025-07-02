@@ -1,8 +1,8 @@
 import MoodCards from "@/components/moods/MoodCards";
 import { Colors } from "@/constants/Colors";
 import { emojis, weekData } from "@/constants/Data";
-import { globalStyles } from "@/styles/globalStyles";
 import { DayItemProps } from "@/types/tabs/Home";
+import { Bold, Regular } from "@/utilities/Fonts";
 import { getCurrentDay } from "@/utilities/Utils";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
@@ -39,15 +39,13 @@ export default function Home() {
         >
           {/* header */}
           <View style={styles.row}>
-            <Text style={[styles.greeting, globalStyles.fontPoppinsRegular]}>
+            <Text style={styles.greeting}>
               Hey, <Text style={styles.bold}>Alexa!</Text> 👋
             </Text>
 
             {/* profile container */}
             <View style={styles.profile}>
-              <Text style={(styles.avatar, globalStyles.fontPoppinsSemibold)}>
-                R
-              </Text>
+              <Text style={styles.avatar}>R</Text>
             </View>
           </View>
 
@@ -78,18 +76,12 @@ export default function Home() {
                       isCurrentDay && styles.currentDayItem,
                     ]}
                   >
-                    <Text
-                      style={[
-                        isCurrentDay && styles.currentDayText,
-                        globalStyles.fontPoppinsRegular,
-                      ]}
-                    >
+                    <Text style={isCurrentDay && styles.currentDayText}>
                       {item.name.slice(0, 3)}
                     </Text>
                     <Text
                       style={[
                         styles.dayNo,
-                        globalStyles.fontPoppinsRegular,
                         isCurrentDay && styles.currentDayText,
                       ]}
                     >
@@ -142,14 +134,11 @@ const styles = StyleSheet.create({
   },
   avatar: {
     textAlign: "center",
-    // fontSize: 40,
-    color: Colors.BLACK,
+    ...Bold(18, Colors.BLACK_DARK),
   },
   greeting: {
-    fontSize: 24,
-    fontWeight: "400",
-    color: Colors.BLACK_DARK,
     marginBottom: 8,
+    ...Regular(24, Colors.BLACK_DARK),
   },
   bold: {
     fontWeight: "bold",
@@ -171,15 +160,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   dayNo: {
-    color: "black",
-    fontWeight: "bold",
-    fontSize: 20,
+    ...Bold(20, Colors.BLACK_DARK),
   },
   currentDayItem: {
     backgroundColor: Colors.PURPLE,
   },
   currentDayText: {
-    color: Colors.WHITE,
+    ...Regular(14, Colors.WHITE),
   },
   emojiContainer: {
     backgroundColor: Colors.WHITE,

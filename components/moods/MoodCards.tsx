@@ -1,5 +1,5 @@
 import { Colors } from "@/constants/Colors";
-import { globalStyles } from "@/styles/globalStyles";
+import { Bold, Regular, SemiBold } from "@/utilities/Fonts";
 import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import React from "react";
@@ -14,9 +14,7 @@ import {
 const MoodCards = ({ heading }: { heading: string }) => {
   return (
     <View style={styles.cardsContainer}>
-      <Text style={[styles.cardHeader, globalStyles.fontPoppinsSemibold]}>
-        {heading}
-      </Text>
+      <Text style={styles.cardHeader}>{heading}</Text>
       {/* TODO : use flat list here */}
       <ScrollView showsVerticalScrollIndicator={false}>
         {Array.from({ length: 7 }).map((_, index) => (
@@ -26,49 +24,25 @@ const MoodCards = ({ heading }: { heading: string }) => {
               <View style={styles.row}>
                 <View style={styles.rowGap1}>
                   <Text style={styles.mood}>😔</Text>
-                  <Text style={[styles.moodName, globalStyles.fontPoppinsBold]}>
-                    Bad
-                  </Text>
+                  <Text style={styles.moodName}>Bad</Text>
                 </View>
                 <TouchableOpacity>
-                  <Text
-                    style={[
-                      styles.editButtonText,
-                      globalStyles.fontPoppinsRegular,
-                    ]}
-                  >
-                    Edit
-                  </Text>
+                  <Text style={styles.editButtonText}>Edit</Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.gap10}>
                 <View>
-                  <Text
-                    style={[styles.moodText, globalStyles.fontPoppinsRegular]}
-                  >
+                  <Text style={styles.moodText}>
                     You felt&nbsp;
-                    <Text
-                      style={[
-                        styles.moodTextDark,
-                        globalStyles.fontPoppinsBold,
-                      ]}
-                    >
-                      Guilty, Sad
-                    </Text>
+                    <Text style={styles.moodTextDark}>Guilty, Sad</Text>
                   </Text>
-                  <Text
-                    style={[styles.moodText, globalStyles.fontPoppinsRegular]}
-                  >
+                  <Text style={styles.moodText}>
                     Because you couldn't enjoy the party
                   </Text>
                 </View>
                 <View>
-                  <Text
-                    style={[styles.noteText, globalStyles.fontPoppinsRegular]}
-                  >
-                    <Text style={[globalStyles.fontPoppinsSemibold]}>
-                      Note:
-                    </Text>
+                  <Text style={styles.noteText}>
+                    <Text style={styles.note}>Note:</Text>
                     &nbsp; I felt so sad because I was not able to enjoy the
                     party as I was too much tired.
                   </Text>
@@ -79,14 +53,7 @@ const MoodCards = ({ heading }: { heading: string }) => {
                         size={16}
                         color={Colors.PURPLE}
                       />
-                      <Text
-                        style={[
-                          styles.readMoreText,
-                          globalStyles.fontPoppinsRegular,
-                        ]}
-                      >
-                        Read More
-                      </Text>
+                      <Text style={styles.readMoreText}>Read More</Text>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -95,22 +62,13 @@ const MoodCards = ({ heading }: { heading: string }) => {
             {/* tip of the day */}
             <View style={[styles.gap10, styles.p10]}>
               <View style={styles.row}>
-                <Text style={[styles.tipHeading, globalStyles.fontPoppinsBold]}>
-                  Find Peace
-                </Text>
+                <Text style={styles.tipHeading}>Find Peace</Text>
                 <View style={styles.rowGap1}>
                   <Entypo name="light-bulb" size={18} color={Colors.GOLDEN} />
-                  <Text
-                    style={[
-                      styles.tipButtonText,
-                      globalStyles.fontPoppinsRegular,
-                    ]}
-                  >
-                    Tip
-                  </Text>
+                  <Text style={styles.tipButtonText}>Tip</Text>
                 </View>
               </View>
-              <Text style={[styles.tipText, globalStyles.fontPoppinsRegular]}>
+              <Text style={styles.tipText}>
                 Spend time outdoors, surrounded by greenery and fresh air.
               </Text>
             </View>
@@ -134,8 +92,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   cardHeader: {
-    color: Colors.BLACK_DARK,
-    fontSize: 25,
+    ...SemiBold(25, Colors.BLACK_DARK),
   },
   card: {
     backgroundColor: "white",
@@ -165,24 +122,22 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   moodName: {
-    color: Colors.BLACK_DARK,
-    fontSize: 20,
-    paddingLeft: 5,
+    ...Bold(20, Colors.BLACK_DARK),
   },
   moodText: {
-    color: Colors.BLACK_DARK,
-    fontSize: 16,
+    ...Regular(16, Colors.BLACK_DARK),
   },
   moodTextDark: {
-    color: Colors.BLACK_DARK,
-    fontSize: 16,
+    ...Bold(16, Colors.BLACK_DARK),
   },
   editButtonText: {
-    color: Colors.PURPLE,
+    ...Regular(12, Colors.PURPLE),
   },
   noteText: {
-    color: Colors.BLACK_DARK,
-    fontSize: 15,
+    ...Regular(15, Colors.BLACK_DARK),
+  },
+  note: {
+    ...SemiBold(15, Colors.BLACK_DARK),
   },
   readMoreButton: {
     flexDirection: "row",
@@ -195,19 +150,15 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   readMoreText: {
-    color: Colors.PURPLE,
-    fontSize: 16,
-    fontWeight: "400",
+    ...Regular(16, Colors.PURPLE),
   },
   tipHeading: {
-    color: Colors.BLACK_DARK,
-    fontSize: 20,
+    ...Bold(20, Colors.BLACK_DARK),
   },
   tipButtonText: {
-    color: Colors.GOLDEN,
+    ...Regular(12, Colors.GOLDEN),
   },
   tipText: {
-    color: Colors.BLACK_DARK,
-    fontSize: 16,
+    ...Regular(16, Colors.BLACK_DARK),
   },
 });

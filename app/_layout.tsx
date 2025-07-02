@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
 export default function RootLayout() {
+  // TODO : use the font utilities
   const [loaded] = useFonts({
     "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
     "Poppins-SemiBold": require("../assets/fonts/Poppins-SemiBold.ttf"),
