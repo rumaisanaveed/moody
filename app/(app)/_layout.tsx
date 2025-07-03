@@ -1,8 +1,13 @@
 import { APP_ROUTES } from "@/constants/Navigation";
 import { Stack } from "expo-router";
-import React from "react";
+import { setStatusBarStyle } from "expo-status-bar";
+import React, { useEffect } from "react";
 
 const AppLayout = () => {
+  useEffect(() => {
+    setStatusBarStyle("dark");
+  }, []);
+
   return (
     <Stack
       screenOptions={{

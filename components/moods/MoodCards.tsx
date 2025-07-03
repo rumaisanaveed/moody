@@ -52,6 +52,10 @@ const MoodCards = ({ heading }: { heading: string }) => {
                         name="add"
                         size={16}
                         color={Colors.PURPLE}
+                        style={{
+                          lineHeight: 24,
+                          paddingTop: 1,
+                        }}
                       />
                       <Text style={styles.readMoreText}>Read More</Text>
                     </View>
@@ -64,7 +68,12 @@ const MoodCards = ({ heading }: { heading: string }) => {
               <View style={styles.row}>
                 <Text style={styles.tipHeading}>Find Peace</Text>
                 <View style={styles.rowGap1}>
-                  <Entypo name="light-bulb" size={18} color={Colors.GOLDEN} />
+                  <Entypo
+                    name="light-bulb"
+                    size={18}
+                    color={Colors.GOLDEN}
+                    style={{ lineHeight: 24 }}
+                  />
                   <Text style={styles.tipButtonText}>Tip</Text>
                 </View>
               </View>
@@ -111,7 +120,7 @@ const styles = StyleSheet.create({
   rowGap1: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 1,
+    gap: 3,
   },
   borderBottom: {
     borderBottomColor: "#D3D3D3",
@@ -120,8 +129,10 @@ const styles = StyleSheet.create({
   },
   mood: {
     fontSize: 20,
+    lineHeight: 24,
   },
   moodName: {
+    lineHeight: 24,
     ...Bold(20, Colors.BLACK_DARK),
   },
   moodText: {
@@ -131,7 +142,7 @@ const styles = StyleSheet.create({
     ...Bold(16, Colors.BLACK_DARK),
   },
   editButtonText: {
-    ...Regular(12, Colors.PURPLE),
+    ...Regular(16, Colors.PURPLE),
   },
   noteText: {
     ...Regular(15, Colors.BLACK_DARK),
@@ -150,13 +161,15 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   readMoreText: {
+    lineHeight: 24,
     ...Regular(16, Colors.PURPLE),
   },
   tipHeading: {
     ...Bold(20, Colors.BLACK_DARK),
   },
   tipButtonText: {
-    ...Regular(12, Colors.GOLDEN),
+    lineHeight: 24,
+    ...Regular(16, Colors.GOLDEN),
   },
   tipText: {
     ...Regular(16, Colors.BLACK_DARK),

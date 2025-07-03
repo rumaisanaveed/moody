@@ -1,9 +1,10 @@
 import { Colors } from "@/constants/Colors";
+import { useRouter } from "expo-router";
 import React, { ReactNode } from "react";
 import {
-  Pressable,
   PressableProps,
   StyleProp,
+  TouchableOpacity,
   View,
   ViewStyle,
 } from "react-native";
@@ -15,18 +16,19 @@ export interface CustomTabBarButtonProps extends PressableProps {
 
 export const CustomTabBarButton: React.FC<CustomTabBarButtonProps> = ({
   children,
-  onPress,
-  style,
-  ...rest
-}) => (
-  <Pressable
-    onPress={onPress}
-    style={[styles.customButtonContainer, style]}
-    {...rest}
-  >
-    <View style={styles.customButton}>{children}</View>
-  </Pressable>
-);
+}) => {
+  const router = useRouter();
+
+  return (
+    <TouchableOpacity
+      onPress={() => router.push("/(app)/(mood-track)/choose-mood")}
+      activeOpacity={1}
+      style={[styles.customButtonContainer]}
+    >
+      <View style={styles.customButton}>{children}</View>
+    </TouchableOpacity>
+  );
+};
 
 const styles = {
   customButtonContainer: {

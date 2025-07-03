@@ -1,12 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-const AppButton = () => {
+const AppButtonComponents = () => {
   return (
     <View>
-      <Text>AppButton</Text>
+      <Text>AppButtonComponents</Text>
     </View>
   );
 };
 
-export default AppButton;
+export default AppButtonComponents;

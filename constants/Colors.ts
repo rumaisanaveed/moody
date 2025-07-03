@@ -15,6 +15,9 @@ export const Colors = {
   GOLDEN: "#E8B50E",
   WHITE: "white",
   HEADING: "#100F11",
+  // GRADIENT
+  VIOLET: "#EED3F2",
+  SKY_BLUE: "#E0F2FF",
   // CHART
   GREEN_LIGHT: "#6DEE89",
   RED_LIGHT: "#FF574D",

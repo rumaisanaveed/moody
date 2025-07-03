@@ -1,8 +1,20 @@
-import { weekDays } from "@/constants/Data";
+import { months, weekDays } from "@/constants/Data";
 
-export const getCurrentDay = () => {
+const sliceString = (value: string): string => {
+  return value.slice(0, 3);
+};
+
+export const getCurrentDay = (): string => {
   const now = new Date();
   const currentDayOfWeek = now.getDay();
   const currentDayName = weekDays[currentDayOfWeek];
   return currentDayName;
+};
+
+export const getCurrentDateAndDay = (): string => {
+  const now = new Date();
+  const currentMonth = sliceString(months[now.getMonth()]);
+  const currentDate = now.getDate();
+  const currentDay = sliceString(getCurrentDay());
+  return `${currentDay}, ${currentMonth} ${currentDate}`;
 };

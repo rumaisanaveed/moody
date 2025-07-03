@@ -1,10 +1,10 @@
+import CustomLinearGradient from "@/components/CustomLinearGradient";
 import MoodCards from "@/components/moods/MoodCards";
 import { Colors } from "@/constants/Colors";
 import { emojis, weekData } from "@/constants/Data";
 import { DayItemProps } from "@/types/tabs/Home";
 import { Bold, Regular } from "@/utilities/Fonts";
 import { getCurrentDay } from "@/utilities/Utils";
-import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
   FlatList,
@@ -22,17 +22,8 @@ export default function Home() {
   const currentDayName = getCurrentDay();
 
   return (
-    <LinearGradient
-      colors={["#EED3F2", "white"]}
-      start={{ x: 0.5, y: 0 }}
-      end={{ x: 0.5, y: 1 }}
-      style={styles.container}
-    >
-      <SafeAreaView
-        style={{
-          flex: 1,
-        }}
-      >
+    <CustomLinearGradient gradientColor={Colors.VIOLET}>
+      <SafeAreaView style={styles.container}>
         <ScrollView
           contentContainerStyle={styles.content}
           showsVerticalScrollIndicator={false}
@@ -106,15 +97,13 @@ export default function Home() {
           <MoodCards heading="This Week's Mood Journal" />
         </ScrollView>
       </SafeAreaView>
-    </LinearGradient>
+    </CustomLinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: 30,
-    paddingHorizontal: 5,
   },
   content: {
     padding: 16,

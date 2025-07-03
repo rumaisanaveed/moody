@@ -1,24 +1,22 @@
-import AppButton from "@/components/buttons/AppButton/AppButton";
 import CustomLinearGradient from "@/components/CustomLinearGradient";
 import SectionHeader from "@/components/SectionHeader";
 import { Colors } from "@/constants/Colors";
 import React from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 
-const ChooseReasons = () => {
+const AddNote = () => {
   return (
     <CustomLinearGradient gradientColor={Colors.SKY_BLUE}>
       <SafeAreaView>
         <ScrollView>
           <SectionHeader
-            heading="What's the reason making you feel this way"
-            text="Select reasons that reflect your emotions"
+            heading="Any thing you want to add"
+            text="Add your notes on any thought that reflating your mood"
           />
-          <AppButton title="Continue" />
         </ScrollView>
       </SafeAreaView>
     </CustomLinearGradient>
   );
 };
 
-export default ChooseReasons;
+export default AddNote;

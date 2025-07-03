@@ -4,18 +4,11 @@ import { Colors } from "@/constants/Colors";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Octicons from "@expo/vector-icons/Octicons";
-import { Tabs, useRouter } from "expo-router";
-import { setStatusBarStyle } from "expo-status-bar";
-import React, { useEffect } from "react";
+import { Tabs } from "expo-router";
+import React from "react";
 import { Platform } from "react-native";
 
 export default function TabLayout() {
-  const router = useRouter();
-
-  useEffect(() => {
-    setStatusBarStyle("dark");
-  }, []);
-
   return (
     <Tabs
       screenOptions={{
@@ -70,12 +63,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <Ionicons name="add" size={28} color={Colors.WHITE} />
           ),
-          tabBarButton: (props) => (
-            <CustomTabBarButton
-              onPress={() => router.push("/(app)/(mood-track)/choose-mood")}
-              {...props}
-            />
-          ),
+          tabBarButton: (props) => <CustomTabBarButton {...props} />,
         }}
       />
       <Tabs.Screen
