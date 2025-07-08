@@ -1,23 +1,28 @@
-import AppButton from "@/components/buttons/AppButton/AppButton";
-import CustomLinearGradient from "@/components/CustomLinearGradient";
-import SectionHeader from "@/components/SectionHeader";
-import { Colors } from "@/constants/Colors";
+import useChooseReasons from "@/layouts/ChooseReasons/ChooseReasonsContainer";
 import React from "react";
-import { SafeAreaView, ScrollView } from "react-native";
+import ChooseItems from "./components/ChooseItems";
 
 const ChooseReasons = () => {
+  const {
+    selectedReasons,
+    handleAddReason,
+    handleClearReason,
+    handleClearReasons,
+  } = useChooseReasons();
+
   return (
-    <CustomLinearGradient gradientColor={Colors.SKY_BLUE}>
-      <SafeAreaView>
-        <ScrollView>
-          <SectionHeader
-            heading="What's the reason making you feel this way"
-            text="Select reasons that reflect your emotions"
-          />
-          <AppButton title="Continue" />
-        </ScrollView>
-      </SafeAreaView>
-    </CustomLinearGradient>
+    <ChooseItems
+      selectedItems={selectedReasons}
+      handleAddItem={handleAddReason}
+      handleClearItem={handleClearReason}
+      handleClearItems={handleClearReasons}
+      sectionHeading="What's the reason making you feel this way?"
+      sectionText="Select upto 3 reasons"
+      buttonTitle="Continue"
+      disabled={selectedReasons.length !== 3}
+      navigationPath="/(app)/(mood-track)/select-hours"
+      listTitle="Reasons"
+    />
   );
 };
 

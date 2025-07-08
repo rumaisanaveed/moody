@@ -18,3 +18,9 @@ export const getCurrentDateAndDay = (): string => {
   const currentDay = sliceString(getCurrentDay());
   return `${currentDay}, ${currentMonth} ${currentDate}`;
 };
+
+export const formatMoodLabel = (key: string) => {
+  return key
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+};

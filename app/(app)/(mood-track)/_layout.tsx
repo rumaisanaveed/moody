@@ -1,4 +1,3 @@
-import ShowDateAndDay from "@/components/ShowDateAndDay";
 import { Colors } from "@/constants/Colors";
 import { Stack } from "expo-router";
 import React from "react";
@@ -19,8 +18,9 @@ const MoodTrackLayout = () => {
       <Stack.Screen
         name="choose-mood"
         options={{
-          headerBackVisible: false,
-          headerLeft: () => <ShowDateAndDay />,
+          // headerBackVisible: false,
+          // headerLeft: () => <ShowDateAndDay />,
+          headerShown: false,
         }}
       />
       <Stack.Screen name="choose-emotions" />

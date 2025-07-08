@@ -1,16 +1,17 @@
 import { Colors } from "@/constants/Colors";
 import { Bold, Regular } from "@/utilities/Fonts";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
 
 interface ISectionHeader {
   heading: string;
   text: string;
+  style?: StyleProp<ViewStyle>;
 }
 
-const SectionHeader = ({ heading, text }: ISectionHeader) => {
+const SectionHeader = ({ heading, text, style }: ISectionHeader) => {
   return (
-    <View>
+    <View style={style}>
       <Text style={styles.heading}>{heading}</Text>
       <Text style={styles.text}>{text}</Text>
     </View>
@@ -24,9 +25,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   heading: {
-    ...Bold(24, Colors.BLACK_DARK),
+    textAlign: "center",
+    ...Bold(32, Colors.BLACK_DARK),
   },
   text: {
-    ...Regular(14, Colors.BLACK_LIGHT),
+    textAlign: "center",
+    ...Regular(16, Colors.BLACK_LIGHT),
   },
 });
