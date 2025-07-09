@@ -1,9 +1,16 @@
 import { APP_ROUTES } from "@/constants/Navigation";
-import { Stack } from "expo-router";
+import { useAuthStore } from "@/stores/Auth";
+import { Redirect, Stack } from "expo-router";
 import { setStatusBarStyle } from "expo-status-bar";
 import React, { useEffect } from "react";
 
 const AppLayout = () => {
+  const { isAuthorized } = useAuthStore();
+
+  if (!isAuthorized) {
+    return <Redirect href="/(auth)/Login" />;
+  }
+
   useEffect(() => {
     setStatusBarStyle("dark");
   }, []);

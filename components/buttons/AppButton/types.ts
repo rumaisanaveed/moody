@@ -1,7 +1,9 @@
-import { TouchableOpacityProps } from "react-native";
+import { StyleProp, TouchableOpacityProps, ViewStyle } from "react-native";
 
 export type TAppButton = {
   title: string;
   // onpres?: () => void;
   disabled?: boolean;
+  marginHorizontal?: number;
+  style?: StyleProp<ViewStyle>;
 } & TouchableOpacityProps;

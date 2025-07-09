@@ -4,11 +4,24 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { TAppButton } from "./types";
 
-const AppButton = ({ title, onPress, disabled }: TAppButton) => {
-  // TODO : add more props later
+const AppButton = ({
+  title,
+  onPress,
+  disabled,
+  marginHorizontal,
+  style,
+}: TAppButton) => {
   return (
     <TouchableOpacity
-      style={[styles.button, disabled && styles.disabledButton]}
+      style={[
+        styles.button,
+        disabled && styles.disabledButton,
+        {
+          marginHorizontal:
+            marginHorizontal !== undefined ? marginHorizontal : 20,
+        },
+        style,
+      ]}
       disabled={disabled}
       onPress={onPress}
     >
@@ -25,7 +38,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     paddingVertical: 15,
     backgroundColor: Colors.PURPLE,
-    marginHorizontal: 20,
   },
   title: {
     textAlign: "center",

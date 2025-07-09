@@ -23,4 +23,6 @@ export const Colors = {
   RED_LIGHT: "#FF574D",
   BLUE_LIGHT: "#68A5FF",
   ORANGE_LIGHT: "#FF8540",
+  // ERROR
+  RED: "red",
 };

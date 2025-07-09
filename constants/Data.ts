@@ -122,3 +122,31 @@ export const moodReasons: string[] = [
   "Responsibility",
   "Expectation",
 ];
+
+export interface SimpleRadioOption {
+  label: string;
+  value: string;
+}
+
+export const sleepHoursOptions: SimpleRadioOption[] = [
+  {
+    label: "0-2 hours",
+    value: "0-2",
+  },
+  {
+    label: "3-4 hours",
+    value: "3-4",
+  },
+  {
+    label: "5-6 hours",
+    value: "5-6",
+  },
+  {
+    label: "7-8 hours",
+    value: "7-8",
+  },
+  {
+    label: "9+ hours",
+    value: "9+",
+  },
+];
