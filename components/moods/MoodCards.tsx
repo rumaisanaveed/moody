@@ -1,89 +1,103 @@
 import { Colors } from "@/constants/Colors";
+import { cardData } from "@/constants/Data";
 import { Bold, Regular, SemiBold } from "@/utilities/Fonts";
 import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import React from "react";
 import {
-  ScrollView,
+  FlatList,
+  StyleProp,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
+  ViewStyle,
 } from "react-native";
 
-const MoodCards = ({ heading }: { heading: string }) => {
+interface IMoodCardsProps {
+  hideHeading?: boolean;
+  heading?: string;
+  style?: StyleProp<ViewStyle>;
+}
+
+const MoodCards = ({
+  heading = "",
+  hideHeading = false,
+  style = {},
+}: IMoodCardsProps) => {
   return (
-    <View style={styles.cardsContainer}>
-      <Text style={styles.cardHeader}>{heading}</Text>
-      {/* TODO : use flat list here */}
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {Array.from({ length: 7 }).map((_, index) => (
-          <View style={styles.card} key={index}>
-            {/* mood & notes */}
-            <View style={[styles.gap10, styles.borderBottom]}>
-              <View style={styles.row}>
-                <View style={styles.rowGap1}>
-                  <Text style={styles.mood}>😔</Text>
-                  <Text style={styles.moodName}>Bad</Text>
-                </View>
-                <TouchableOpacity>
-                  <Text style={styles.editButtonText}>Edit</Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.gap10}>
-                <View>
-                  <Text style={styles.moodText}>
-                    You felt&nbsp;
-                    <Text style={styles.moodTextDark}>Guilty, Sad</Text>
-                  </Text>
-                  <Text style={styles.moodText}>
-                    Because you couldn't enjoy the party
-                  </Text>
-                </View>
-                <View>
-                  <Text style={styles.noteText}>
-                    <Text style={styles.note}>Note:</Text>
-                    &nbsp; I felt so sad because I was not able to enjoy the
-                    party as I was too much tired.
-                  </Text>
+    <View style={[styles.cardsContainer, style]}>
+      {!hideHeading && <Text style={styles.cardHeader}>{heading}</Text>}
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={cardData ?? []}
+        contentContainerStyle={{ paddingBottom : 20, }}
+        renderItem={({ item }) => {
+          return (
+            <View style={styles.card}>
+              {/* mood & notes */}
+              <View style={[styles.gap10, styles.borderBottom]}>
+                <View style={styles.row}>
+                  <View style={styles.rowGap1}>
+                    <Text style={styles.mood}>{item.mood}</Text>
+                    <Text style={styles.moodName}>{item.moodName}</Text>
+                  </View>
                   <TouchableOpacity>
-                    <View style={styles.readMoreButton}>
-                      <FontAwesome6
-                        name="add"
-                        size={16}
-                        color={Colors.PURPLE}
-                        style={{
-                          lineHeight: 24,
-                          paddingTop: 1,
-                        }}
-                      />
-                      <Text style={styles.readMoreText}>Read More</Text>
-                    </View>
+                    <Text style={styles.editButtonText}>Edit</Text>
                   </TouchableOpacity>
                 </View>
-              </View>
-            </View>
-            {/* tip of the day */}
-            <View style={[styles.gap10, styles.p10]}>
-              <View style={styles.row}>
-                <Text style={styles.tipHeading}>Find Peace</Text>
-                <View style={styles.rowGap1}>
-                  <Entypo
-                    name="light-bulb"
-                    size={18}
-                    color={Colors.GOLDEN}
-                    style={{ lineHeight: 24 }}
-                  />
-                  <Text style={styles.tipButtonText}>Tip</Text>
+                <View style={styles.gap10}>
+                  <View>
+                    <Text style={styles.moodText}>
+                      You felt&nbsp;
+                      <Text style={styles.moodTextDark}>{item.moodText}</Text>
+                    </Text>
+                    <Text style={styles.moodText}>{item.tipText}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.noteText}>
+                      <Text style={styles.note}>Note:</Text>
+                      &nbsp; {item.noteText}
+                    </Text>
+                    <TouchableOpacity>
+                      <View style={styles.readMoreButton}>
+                        <FontAwesome6
+                          name="add"
+                          size={16}
+                          color={Colors.PURPLE}
+                          style={{
+                            lineHeight: 24,
+                            paddingTop: 1,
+                          }}
+                        />
+                        <Text style={styles.readMoreText}>Read More</Text>
+                      </View>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
-              <Text style={styles.tipText}>
-                Spend time outdoors, surrounded by greenery and fresh air.
-              </Text>
+              {/* tip of the day */}
+              <View style={[styles.gap10, styles.p10]}>
+                <View style={styles.row}>
+                  <Text style={styles.tipHeading}>Find Peace</Text>
+                  <View style={styles.rowGap1}>
+                    <Entypo
+                      name="light-bulb"
+                      size={18}
+                      color={Colors.GOLDEN}
+                      style={{ lineHeight: 24 }}
+                    />
+                    <Text style={styles.tipButtonText}>Tip</Text>
+                  </View>
+                </View>
+                <Text style={styles.tipText}>
+                  Spend time outdoors, surrounded by greenery and fresh air.
+                </Text>
+              </View>
             </View>
-          </View>
-        ))}
-      </ScrollView>
+          );
+        }}
+      />
     </View>
   );
 };
@@ -97,8 +111,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cardsContainer: {
+    flex : 1,
     gap: 10,
-    paddingVertical: 15,
   },
   cardHeader: {
     ...SemiBold(25, Colors.BLACK_DARK),

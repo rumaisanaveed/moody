@@ -1,13 +1,11 @@
 import AuthWrapper from "@/components/authWrappers/AuthWrapper";
 import AppButton from "@/components/buttons/AppButton/AppButton";
-import AppInput from "@/components/input/AppInput";
+import AppInput from "@/components/input/AppInput/AppInput";
 import { useLogin } from "@/layouts/Auth/Login/LoginContainer";
-import { useRouter } from "expo-router";
 import React from "react";
 
 const Login = () => {
-  const router = useRouter();
-  const {} = useLogin();
+  const { control, handleSubmit } = useLogin();
 
   return (
     <AuthWrapper
@@ -18,15 +16,17 @@ const Login = () => {
     >
       <AppInput
         label="Email"
+        control={control}
+        name="email"
         placeholder="example@gmail.com"
         keyboardType="email-address"
       />
-      <AppInput label="Password" isPassword />
+      <AppInput label="Password" name="password" isPassword control={control} />
       <AppButton
         title="Login"
         marginHorizontal={0}
         style={{ marginTop: 20 }}
-        onPress={() => router.push("/(app)/(tabs)")}
+        onPress={handleSubmit}
       />
     </AuthWrapper>
   );

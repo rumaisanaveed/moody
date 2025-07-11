@@ -1,5 +1,6 @@
 import { CustomTabBarButton } from "@/components/buttons/CustomTabBarButton";
 import { CustomTabBarComponent } from "@/components/buttons/CustomTabBarComponent";
+import { defaultHeader } from "@/components/navigationHelpers/Headers";
 import { Colors } from "@/constants/Colors";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -8,6 +9,8 @@ import { Tabs } from "expo-router";
 import React from "react";
 import { Platform } from "react-native";
 
+// TODO : Fix tab bar height coz it's taking more
+// height on some screens and less height on some screens
 export default function TabLayout() {
   return (
     <Tabs
@@ -37,24 +40,27 @@ export default function TabLayout() {
     >
       <Tabs.Screen
         name="index"
-        options={{
-          title: "Home",
+        options={({ route }) => ({
           tabBarIcon: ({ color }) => (
             <Feather name="home" size={24} color={color} />
           ),
           tabBarButton: (props) => <CustomTabBarComponent {...props} />,
-        }}
+          ...defaultHeader({ route, title: "home", showHeaderTitle: false }),
+        })}
       />
-
       <Tabs.Screen
         name="stats"
-        options={{
-          title: "Stats",
+        options={({ route }) => ({
           tabBarIcon: ({ color }) => (
             <Ionicons name="stats-chart-outline" size={24} color={color} />
           ),
           tabBarButton: (props) => <CustomTabBarComponent {...props} />,
-        }}
+          ...defaultHeader({
+            route,
+            title: "Stats",
+            headerTitle: "Your Stats",
+          }),
+        })}
       />
       <Tabs.Screen
         name="modal"
@@ -68,23 +74,27 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="history"
-        options={{
-          title: "History",
+        options={({ route }) => ({
           tabBarIcon: ({ color }) => (
             <Octicons name="history" size={24} color={color} />
           ),
           tabBarButton: (props) => <CustomTabBarComponent {...props} />,
-        }}
+          ...defaultHeader({
+            route,
+            headerTitle: "Your Mood History",
+            title: "History",
+          }),
+        })}
       />
       <Tabs.Screen
         name="settings"
-        options={{
-          title: "Settings",
+        options={({ route }) => ({
           tabBarIcon: ({ color }) => (
             <Feather name="settings" size={24} color={color} />
           ),
           tabBarButton: (props) => <CustomTabBarComponent {...props} />,
-        }}
+          ...defaultHeader({ route, title: "Settings" }),
+        })}
       />
     </Tabs>
   );

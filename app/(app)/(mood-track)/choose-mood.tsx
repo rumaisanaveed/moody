@@ -5,13 +5,20 @@ import { Colors } from "@/constants/Colors";
 import { EmojiList } from "@/layouts/ChooseMood/ChooseMoodComponents";
 import useChooseMood from "@/layouts/ChooseMood/ChooseMoodContainer";
 import { Regular } from "@/utilities/Fonts";
-import { useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 
 const ChooseCurrentMood = () => {
   const router = useRouter();
   const { selectedEmojiId, handleSelectEmoji } = useChooseMood();
+  const navigation = useNavigation();
+
+  // useEffect(() => {
+  //   navigation.setParams({
+  //     RightComponent: <View>Right Component</View>,
+  //   });
+  // }, []);
 
   return (
     <CustomLinearGradient gradientColor={Colors.SKY_BLUE}>

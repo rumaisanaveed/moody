@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WHITE,
     borderRadius: 20,
     padding: 20,
+    paddingBottom: 0,
     elevation: 20,
   },
   title: {

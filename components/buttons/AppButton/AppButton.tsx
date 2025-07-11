@@ -13,6 +13,7 @@ const AppButton = ({
 }: TAppButton) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.9}
       style={[
         styles.button,
         disabled && styles.disabledButton,

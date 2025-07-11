@@ -24,3 +24,7 @@ export const formatMoodLabel = (key: string) => {
     .replace(/([a-z])([A-Z])/g, "$1 $2")
     .replace(/\b\w/g, (char) => char.toUpperCase());
 };
+
+export const capitalizeTitle = (title: string) => {
+  return title.charAt(0).toUpperCase() + title.slice(1);
+};

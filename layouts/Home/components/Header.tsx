@@ -3,21 +3,21 @@ import { Bold, Regular } from "@/utilities/Fonts";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-// TOOD : Handle data and login inside the container later
-const Header = () => {
+export const ProfileIcon = () => {
   return (
-    <View style={styles.row}>
-      <Text style={styles.greeting}>
-        Hey, <Text style={styles.bold}>Alexa!</Text> 👋
-      </Text>
-      <View style={styles.profile}>
-        <Text style={styles.avatar}>R</Text>
-      </View>
+    <View style={styles.profile}>
+      <Text style={styles.avatar}>R</Text>
     </View>
   );
 };
 
-export default Header;
+export const HeaderLeft = () => {
+  return (
+    <Text style={styles.greeting}>
+      Hey, <Text style={styles.bold}>Alexa!</Text> 👋
+    </Text>
+  );
+};
 
 const styles = StyleSheet.create({
   row: {
@@ -32,10 +32,11 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
+    elevation : 10,
   },
   avatar: {
     textAlign: "center",
-    ...Bold(18, Colors.BLACK_DARK),
+    ...Bold(18, Colors.BLACK_LIGHT),
   },
   greeting: {
     marginBottom: 8,

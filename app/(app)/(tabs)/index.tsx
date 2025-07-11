@@ -1,31 +1,40 @@
 import CustomLinearGradient from "@/components/CustomLinearGradient";
 import MoodCards from "@/components/moods/MoodCards";
 import { Colors } from "@/constants/Colors";
-import Header from "@/layouts/Home/components/Header";
+import { HeaderLeft, ProfileIcon } from "@/layouts/Home/components/Header";
 import MoodsFlatlist from "@/layouts/Home/components/MoodsFlatlist";
-import React from "react";
-import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { useNavigation } from "expo-router";
+import React, { useEffect } from "react";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 
 export default function Home() {
+  const navigation = useNavigation<any>();
+
+  useEffect(() => {
+    navigation.setParams({
+      RightComponent: ProfileIcon,
+      LeftComponent: HeaderLeft,
+    });
+  }, [navigation, ProfileIcon, HeaderLeft]);
+
   return (
     <CustomLinearGradient gradientColor={Colors.VIOLET}>
-      <SafeAreaView style={styles.container}>
-        <ScrollView
-          contentContainerStyle={styles.content}
-          showsVerticalScrollIndicator={false}
-        >
-          <Header />
+      <SafeAreaView style={styles.flexOne}>
+        <View style={[styles.container, styles.flexOne]}>
           <MoodsFlatlist />
           <MoodCards heading="This Week's Mood Journal" />
-        </ScrollView>
+        </View>
       </SafeAreaView>
     </CustomLinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  flexOne: {
     flex: 1,
+  },
+  container: {
+    paddingHorizontal: 10,
   },
   content: {
     padding: 16,

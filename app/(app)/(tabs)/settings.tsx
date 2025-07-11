@@ -1,10 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+// TODO: Design this screen
+
 const Settings = () => {
   return (
     <View>
-      <Text style={[styles.heading, ,]}>Settings</Text>
+      <Text style={[styles.heading]}>Settings Screen</Text>
     </View>
   );
 };

@@ -6,12 +6,12 @@ import { getCurrentDay } from "@/utilities/Utils";
 import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 
+// TODO : Make a generic component for flatlist
+// fix this flatlist height issue
 interface IRenderItemProps {
   item: DayItemProps;
   index: number;
 }
-
-// TODO : Handle data and logic inside the container later
 
 const MoodsFlatlist = () => {
   const emojisList = Object.values(emojis);
@@ -20,20 +20,20 @@ const MoodsFlatlist = () => {
   const currentDayName = getCurrentDay();
 
   return (
-    <FlatList
+   <View>
+     <FlatList
       data={weekData ?? []}
       horizontal
-      style={{
-        paddingTop: 15,
-        paddingBottom: 10,
-      }}
+      style={styles.pb10}
       contentContainerStyle={styles.daysList}
       showsHorizontalScrollIndicator={false}
       renderItem={({ item, index }: IRenderItemProps) => {
         const isCurrentDay =
           item.name.toLowerCase() === currentDayName.toLowerCase();
         return (
-          <View style={styles.dayAndEmojiContainer}>
+          <View
+            style={styles.dayAndEmojiContainer}
+          >
             <View
               style={[styles.dayItem, isCurrentDay && styles.currentDayItem]}
             >
@@ -59,18 +59,24 @@ const MoodsFlatlist = () => {
       }}
       keyExtractor={(item) => item.id.toString()}
     />
+   </View>
   );
 };
 
 export default MoodsFlatlist;
 
 const styles = StyleSheet.create({
+  pb10 : {
+    paddingBottom : 10,
+  },
   daysList: {
     gap: 10,
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    flexGrow: 0,
   },
   dayAndEmojiContainer: {
     alignItems: "center",
-    justifyContent: "center",
   },
   dayItem: {
     backgroundColor: Colors.WHITE,

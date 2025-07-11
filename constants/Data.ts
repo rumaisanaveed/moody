@@ -150,3 +150,46 @@ export const sleepHoursOptions: SimpleRadioOption[] = [
     value: "9+",
   },
 ];
+
+export const cardData = [
+  {
+    mood: "😔",
+    moodName: "Bad",
+    tipHeading: "Find Peace",
+    tipText: "Spend time outdoors, surrounded by greenery and fresh air.",
+    moodText: "Guilty, Sad",
+    reason: "Because you couldn't enjoy the party",
+    noteText:
+      "I felt so sad because I was not able to enjoy the party as I was too much tired.",
+  },
+  {
+    mood: "😔",
+    moodName: "Bad",
+    tipHeading: "Find Peace",
+    tipText: "Spend time outdoors, surrounded by greenery and fresh air.",
+    moodText: "Guilty, Sad",
+    reason: "Because you couldn't enjoy the party",
+    noteText:
+      "I felt so sad because I was not able to enjoy the party as I was too much tired.",
+  },
+  {
+    mood: "😔",
+    moodName: "Bad",
+    tipHeading: "Find Peace",
+    tipText: "Spend time outdoors, surrounded by greenery and fresh air.",
+    moodText: "Guilty, Sad",
+    reason: "Because you couldn't enjoy the party",
+    noteText:
+      "I felt so sad because I was not able to enjoy the party as I was too much tired.",
+  },
+  {
+    mood: "😔",
+    moodName: "Bad",
+    tipHeading: "Find Peace",
+    tipText: "Spend time outdoors, surrounded by greenery and fresh air.",
+    moodText: "Guilty, Sad",
+    reason: "Because you couldn't enjoy the party",
+    noteText:
+      "I felt so sad because I was not able to enjoy the party as I was too much tired.",
+  },
+];

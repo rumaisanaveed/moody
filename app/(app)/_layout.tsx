@@ -8,7 +8,7 @@ const AppLayout = () => {
   const { isAuthorized } = useAuthStore();
 
   if (!isAuthorized) {
-    return <Redirect href="/(auth)/Login" />;
+    return <Redirect href="/(auth)/Signup" />;
   }
 
   useEffect(() => {

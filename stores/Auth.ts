@@ -1,9 +1,9 @@
 import { create } from "zustand";
 
 interface IAuthStore {
-  isAuthorized: false;
+  isAuthorized: true;
 }
 
 export const useAuthStore = create<IAuthStore>((set) => ({
-  isAuthorized: false,
+  isAuthorized: true,
 }));

@@ -1,15 +1,11 @@
 import AuthWrapper from "@/components/authWrappers/AuthWrapper";
 import AppButton from "@/components/buttons/AppButton/AppButton";
-import AppInput from "@/components/input/AppInput";
+import AppInput from "@/components/input/AppInput/AppInput";
 import { useSignup } from "@/layouts/Auth/Signup/SignupContainer";
-import { useRouter } from "expo-router";
 import React from "react";
 
-// npm i react-native-keyboard-controller@1.16.5
-
 export default function Signup() {
-  const {} = useSignup();
-  const router = useRouter();
+  const { control, handleSubmit } = useSignup();
 
   return (
     <AuthWrapper
@@ -19,21 +15,31 @@ export default function Signup() {
       mode="signup"
     >
       <AppInput
+        control={control}
+        name="username"
         label="Username"
         placeholder="Example User"
         keyboardType="default"
       />
       <AppInput
+        control={control}
+        name="email"
         label="Email"
         placeholder="example@gmail.com"
         keyboardType="email-address"
       />
-      <AppInput label="Password" isPassword />
+      <AppInput
+        control={control}
+        name="password"
+        label="Password"
+        placeholder="Enter your password"
+        isPassword
+      />
       <AppButton
         title="Sign up"
         marginHorizontal={0}
         style={{ marginTop: 10 }}
-        onPress={() => router.push("/(app)/(tabs)")}
+        onPress={handleSubmit}
       />
     </AuthWrapper>
   );

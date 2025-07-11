@@ -1,15 +1,14 @@
 import AppButton from "@/components/buttons/AppButton/AppButton";
 import CustomLinearGradient from "@/components/CustomLinearGradient";
-import AppInput from "@/components/input/AppInput";
+import AppInput from "@/components/input/AppInput/AppInput";
 import SectionHeader from "@/components/SectionHeader";
 import { Colors } from "@/constants/Colors";
-import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useAddNote } from "@/layouts/AddNote/AddNoteContainer";
+import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 
 const AddNote = () => {
-  const [note, setNote] = useState<string>("");
-  const router = useRouter();
+  const { control, handleSubmit } = useAddNote();
 
   return (
     <CustomLinearGradient gradientColor={Colors.SKY_BLUE}>
@@ -20,18 +19,15 @@ const AddNote = () => {
             text="Add your notes on any thought that reflating your mood"
           />
           <AppInput
+            name="note"
             label="Add Notes"
             multiline
             numberOfLines={10}
             placeholder="Today, I felt sad because of the university fyp submission."
-            onChangeText={(text) => setNote(text)}
+            control={control}
           />
         </ScrollView>
-        <AppButton
-          title="Save"
-          disabled={note === ""}
-          // onPress={() => router.push("")}
-        />
+        <AppButton title="Save" onPress={handleSubmit} />
       </SafeAreaView>
     </CustomLinearGradient>
   );
