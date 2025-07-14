@@ -22,7 +22,6 @@ const SelectHoursOfSleep = () => {
             text="Sometimes, the reason of feeling low can be the inadequate sleep."
           />
           <RadioGroup
-            label=""
             options={sleepHoursOptions}
             selected={selected}
             onSelect={setSelected}

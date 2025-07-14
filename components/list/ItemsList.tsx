@@ -15,6 +15,7 @@ export function ItemsList({ handleAddItem, title }: IListItemsProps) {
       <View style={styles.emotionsList}>
         {emotions.map((item, index) => (
           <TouchableOpacity
+            activeOpacity={0.8}
             style={[styles.emotionContainer]}
             key={index}
             onPress={() => handleAddItem(index, item)}

@@ -9,8 +9,6 @@ import { Tabs } from "expo-router";
 import React from "react";
 import { Platform } from "react-native";
 
-// TODO : Fix tab bar height coz it's taking more
-// height on some screens and less height on some screens
 export default function TabLayout() {
   return (
     <Tabs
@@ -23,17 +21,16 @@ export default function TabLayout() {
             position: "absolute",
             backgroundColor: Colors.WHITE,
             borderTopWidth: 0,
-            shadowColor: "#000",
+            shadowColor: Colors.SHADOW_COLOR,
             shadowOffset: { width: 0, height: -3 },
             shadowOpacity: 0.1,
             shadowRadius: 10,
           },
           default: {
             backgroundColor: Colors.WHITE,
-            opacity: 0.85,
-            borderTopWidth: 0,
-            borderTopColor: "transparent",
             elevation: 0,
+            height: 100,
+            paddingTop: 15,
           },
         }),
       }}

@@ -13,7 +13,6 @@ interface IDefaultProps {
   style?: StyleProp<ViewStyle>;
 }
 
-// TODO: Fix the bg color of the header across different screens
 export function defaultHeader<T>(props: IDefaultProps): T {
   const {
     title = "",
@@ -36,9 +35,15 @@ export function defaultHeader<T>(props: IDefaultProps): T {
         navigation.goBack();
       };
       return (
-        <View style={[styles.container,!showBackIcon && {
-          justifyContent : "space-between"
-        }, style]}>
+        <View
+          style={[
+            styles.container,
+            !showBackIcon && {
+              justifyContent: "space-between",
+            },
+            style,
+          ]}
+        >
           {showHeaderTitle && (
             <Text style={styles.headerTitle}>
               {headerTitle ? headerTitle : Title}

@@ -1,6 +1,7 @@
 import { Colors } from "@/constants/Colors";
 import { emojis } from "@/constants/Data";
 import { Regular } from "@/utilities/Fonts";
+import { capitalizeTitle } from "@/utilities/Utils";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { IEmojiList } from "./types";
@@ -9,7 +10,11 @@ export function EmojiList({ selectedEmojiId, handleSelectEmoji }: IEmojiList) {
   return (
     <View style={styles.emojiList}>
       {Object.entries(emojis).map(([text, emoji], index) => (
-        <TouchableOpacity key={index} onPress={() => handleSelectEmoji(index)}>
+        <TouchableOpacity
+          key={index}
+          onPress={() => handleSelectEmoji(index)}
+          activeOpacity={0.6}
+        >
           <View
             style={[
               styles.emojiContainer,
@@ -21,7 +26,7 @@ export function EmojiList({ selectedEmojiId, handleSelectEmoji }: IEmojiList) {
           >
             <Text style={styles.emoji}>{emoji}</Text>
           </View>
-          <Text style={styles.text}>{text}</Text>
+          <Text style={styles.text}>{capitalizeTitle(text)}</Text>
         </TouchableOpacity>
       ))}
     </View>

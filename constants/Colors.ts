@@ -14,10 +14,13 @@ export const Colors = {
   PINK_LIGHT: "#FAD9E6",
   GOLDEN: "#E8B50E",
   WHITE: "white",
+  LIGHT_WHITE: "#f2f2f2",
   HEADING: "#100F11",
   // GRADIENT
   VIOLET: "#EED3F2",
   SKY_BLUE: "#E0F2FF",
+  // SHADOW COLOR
+  SHADOW_COLOR: "#000",
   // CHART
   GREEN_LIGHT: "#6DEE89",
   RED_LIGHT: "#FF574D",

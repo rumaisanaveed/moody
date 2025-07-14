@@ -28,6 +28,7 @@ export function SelectedItemsList({
       <View style={[styles.emotionsList, styles.gap5]}>
         {selectedItems?.map((item: ISelectedItem) => (
           <TouchableOpacity
+            activeOpacity={0.7}
             key={item.id}
             style={styles.selectedItem}
             onPress={() => handleClearItem(item.id)}

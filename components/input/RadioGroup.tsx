@@ -4,7 +4,6 @@ import React from "react";
 import {
   StyleSheet,
   Text,
-  TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -16,26 +15,20 @@ export interface SimpleRadioOption {
 }
 
 interface RadioGroupProps {
-  label?: string;
-  error?: string;
   selected?: string | null;
   onSelect: (value: string) => void;
   options: SimpleRadioOption[];
   containerStyle?: ViewStyle;
   optionStyle?: ViewStyle;
-  labelStyle?: TextStyle;
   disabled?: boolean;
 }
 
 const RadioGroup = ({
-  label,
-  error,
   selected,
   onSelect,
   options,
   containerStyle,
   optionStyle,
-  labelStyle,
   disabled = false,
 }: RadioGroupProps) => {
   return (

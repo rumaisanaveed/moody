@@ -1,6 +1,6 @@
 import { Colors } from "@/constants/Colors";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { Pressable } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 interface IHeaderLeftIconProps {
   onBackPress: () => void;
@@ -8,8 +8,8 @@ interface IHeaderLeftIconProps {
 
 export function HeaderLeftIcon({ onBackPress }: IHeaderLeftIconProps) {
   return (
-    <Pressable onPress={onBackPress}>
+    <TouchableOpacity onPress={onBackPress} activeOpacity={0.7}>
       <AntDesign name="arrowleft" size={24} color={Colors.BLACK_DARK} />
-    </Pressable>
+    </TouchableOpacity>
   );
 }

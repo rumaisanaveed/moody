@@ -20,11 +20,6 @@ export const HeaderLeft = () => {
 };
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   profile: {
     height: 40,
     width: 40,
@@ -32,7 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",
-    elevation : 10,
+    elevation: 10,
   },
   avatar: {
     textAlign: "center",

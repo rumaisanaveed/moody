@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { BottomTabBarButtonProps } from "@react-navigation/bottom-tabs";
 import React from "react";
 import {
@@ -14,7 +15,7 @@ export const CustomTabBarComponent: React.FC<BottomTabBarButtonProps> = ({
 }) => {
   const isSelected = accessibilityState?.selected;
 
-  const backgroundColor = isSelected ? "#f2f2f2" : "white";
+  const backgroundColor = isSelected ? Colors.LIGHT_WHITE : Colors.WHITE;
 
   return Platform.OS === "android" ? (
     <TouchableWithoutFeedback onPress={onPress}>

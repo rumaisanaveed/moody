@@ -4,38 +4,23 @@ import SectionHeader from "@/components/SectionHeader";
 import { Colors } from "@/constants/Colors";
 import { EmojiList } from "@/layouts/ChooseMood/ChooseMoodComponents";
 import useChooseMood from "@/layouts/ChooseMood/ChooseMoodContainer";
-import { Regular } from "@/utilities/Fonts";
-import { useNavigation, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 
 const ChooseCurrentMood = () => {
   const router = useRouter();
   const { selectedEmojiId, handleSelectEmoji } = useChooseMood();
-  const navigation = useNavigation();
-
-  // useEffect(() => {
-  //   navigation.setParams({
-  //     RightComponent: <View>Right Component</View>,
-  //   });
-  // }, []);
 
   return (
     <CustomLinearGradient gradientColor={Colors.SKY_BLUE}>
-      <SafeAreaView
-        style={{
-          flex: 1,
-        }}
-      >
+      <SafeAreaView style={styles.flexOne}>
         <ScrollView style={styles.container}>
           <SectionHeader
             heading="What's your mood now?"
             text="Select mood that reflects the most how you are feeling at this moment."
-            style={{
-              marginTop: 20,
-            }}
+            style={styles.mt20}
           />
-          {/* emojis */}
           <EmojiList
             selectedEmojiId={selectedEmojiId}
             handleSelectEmoji={handleSelectEmoji}
@@ -54,27 +39,13 @@ const ChooseCurrentMood = () => {
 export default ChooseCurrentMood;
 
 const styles = StyleSheet.create({
+  flexOne: {
+    flex: 1,
+  },
   container: {
-    paddingVertical: 20,
     paddingHorizontal: 10,
   },
-  emojiList: {
-    paddingTop: 20,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 20,
-  },
-  emojiContainer: {
-    backgroundColor: "#D3DBEC",
-    borderRadius: 50,
-    padding: 15,
-  },
-  emoji: {
-    fontSize: 40,
-  },
-  text: {
-    paddingTop: 4,
-    textAlign: "center",
-    ...Regular(14, Colors.BLACK_LIGHT),
+  mt20: {
+    marginTop: 20,
   },
 });

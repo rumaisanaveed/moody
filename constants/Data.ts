@@ -23,6 +23,17 @@ export const emojis: Record<string, string> = {
   verySad: "😟",
 };
 
+/**
+ * Formats a camelCase emoji key (e.g., 'veryHappy') to a human-readable string (e.g., 'Very Happy').
+ * @param key The emoji key in camelCase.
+ * @returns The formatted string.
+ */
+export function formatEmojiKey(key: string): string {
+  return key
+    .replace(/([A-Z])/g, " $1") // insert space before capital letters
+    .replace(/^./, (str) => str.toUpperCase()); // capitalize first letter
+}
+
 export const emojisList = Object.values(emojis);
 
 export const moodsYLabels: string[] = [

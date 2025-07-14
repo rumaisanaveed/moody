@@ -3,7 +3,7 @@ import { Colors } from "@/constants/Colors";
 import { moodsYLabels, sleepYLabels } from "@/constants/Data";
 import { Bold, SemiBold } from "@/utilities/Fonts";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 // very sad - 10
 // sad - 20
@@ -108,18 +108,20 @@ const sleepData = [
 export default function MoodChart() {
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Your Mood History</Text>
-      <CustomBarChart
-        heading="Mood Chart"
-        data={moodData}
-        yAxisLabels={moodsYLabels}
-      />
-      <CustomBarChart
-        heading="Sleep Chart"
-        data={sleepData}
-        style={styles.mt20}
-        yAxisLabels={sleepYLabels}
-      />
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.pb10}>
+        <CustomBarChart
+          heading="Mood Chart"
+          data={moodData}
+          yAxisLabels={moodsYLabels}
+          rotateYLabels={true}
+        />
+        <CustomBarChart
+          heading="Sleep Chart"
+          data={sleepData}
+          style={styles.mt20}
+          yAxisLabels={sleepYLabels}
+        />
+      </ScrollView>
     </View>
   );
 }
@@ -128,11 +130,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingVertical: 30,
+    paddingBottom: 20,
   },
-  heading: {
-    paddingVertical: 10,
-    ...SemiBold(30, Colors.BLACK_DARK),
+  pb10: {
+    paddingBottom: 10,
   },
   mt20: {
     marginTop: 20,

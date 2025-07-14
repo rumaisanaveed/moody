@@ -1,21 +1,71 @@
+import { Colors } from "@/constants/Colors";
+import { Regular } from "@/utilities/Fonts";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-// TODO: Design this screen
+export default function SettingsScreen() {
+  const user = { username: "Alexa", email: "alexa@email.com" };
 
-const Settings = () => {
+  const InfoSection = ({ label, text }: { label: string; text: string }) => {
+    return (
+      <View style={styles.infoSection}>
+        <Text style={styles.label}>{label}</Text>
+        <Text style={styles.value}>{text}</Text>
+      </View>
+    );
+  };
+
   return (
-    <View>
-      <Text style={[styles.heading]}>Settings Screen</Text>
+    <View style={styles.container}>
+      <InfoSection label="Username" text={user.username} />
+      <InfoSection label="Email" text={user.email} />
+      <TouchableOpacity activeOpacity={0.6} style={styles.logoutBtn}>
+        <SimpleLineIcons name="logout" size={18} color={Colors.BLACK_DARK} />
+        <Text style={styles.btnText}>Logout</Text>
+      </TouchableOpacity>
     </View>
   );
-};
-
-export default Settings;
+}
 
 const styles = StyleSheet.create({
-  heading: {
-    fontSize: 30,
-    fontWeight: "bold",
+  container: {
+    flex: 1,
+    alignItems: "center",
+    padding: 24,
+    paddingTop: 10,
+  },
+  infoSection: {
+    width: "100%",
+    marginBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.GRAY,
+    paddingBottom: 12,
+  },
+  label: {
+    color: Colors.BLACK,
+    fontSize: 14,
+    marginBottom: 4,
+  },
+  value: {
+    color: Colors.BLACK,
+    fontSize: 18,
+    fontWeight: "500",
+  },
+  logoutBtn: {
+    flexDirection: "row",
+    gap: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: Colors.BLACK_LIGHT,
+    borderWidth: 1,
+    borderRadius: 50,
+    paddingVertical: 6,
+    marginTop: 10,
+    width: "40%",
+    alignSelf: "flex-start",
+  },
+  btnText: {
+    ...Regular(16, Colors.BLACK),
   },
 });

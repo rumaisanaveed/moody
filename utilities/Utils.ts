@@ -28,3 +28,7 @@ export const formatMoodLabel = (key: string) => {
 export const capitalizeTitle = (title: string) => {
   return title.charAt(0).toUpperCase() + title.slice(1);
 };
+
+export const capitalizeFirstCharAndJoin = (text : string) => {
+  return text.split("")
+}
