@@ -1,20 +1,23 @@
 import { Colors } from "@/constants/Colors";
 import { Bold, Regular } from "@/utilities/Fonts";
+import { getUserDetails } from "@/utilities/Utils";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 export const ProfileIcon = () => {
+  const user = getUserDetails();
   return (
     <View style={styles.profile}>
-      <Text style={styles.avatar}>R</Text>
+      <Text style={styles.avatar}>{user?.username[0].toUpperCase()}</Text>
     </View>
   );
 };
 
 export const HeaderLeft = () => {
+  const user = getUserDetails();
   return (
     <Text style={styles.greeting}>
-      Hey, <Text style={styles.bold}>Alexa!</Text> 👋
+      Hey, <Text style={styles.bold}>{user?.username}!</Text> 👋
     </Text>
   );
 };

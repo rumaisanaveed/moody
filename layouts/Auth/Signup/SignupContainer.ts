@@ -1,10 +1,29 @@
+import { Signup } from "@/apis/Auth";
+import { setItem } from "@/services/Storage";
+import { useAuthStore } from "@/stores/Auth";
 import { SignupFormSchema } from "@/validations";
-import { useRouter } from "expo-router";
+import { FirebaseError } from "firebase/app";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { SignupFormValues } from "../types";
 
+function getFirebaseErrorMessage(error: FirebaseError): string {
+  switch (error.code) {
+    case "auth/email-already-in-use":
+      return "This email is already in use. Please use a different email.";
+    case "auth/invalid-email":
+      return "The email address is not valid.";
+    case "auth/account-exists-with-different-credential":
+      return "Invalid credentials";
+    case "auth/user-disabled":
+      return "Oops, your account has been disabled.";
+    default:
+      return error.message || "An unknown error occurred. Please try again.";
+  }
+}
+
 export function useSignup() {
-  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
   const { control, handleSubmit } = useForm<SignupFormValues>({
     mode: "onChange",
     defaultValues: {
@@ -15,13 +34,37 @@ export function useSignup() {
     resolver: SignupFormSchema,
   });
 
+  const {
+    mutate: signup,
+    isPending,
+    isError,
+  } = Signup({
+    onSuccess(data) {
+      // console.log("User after signup", data);
+      setItem("user", data);
+      // set user to storage
+      useAuthStore.setState({ isAuthorized: true });
+    },
+    onError(error: FirebaseError) {
+      setError(getFirebaseErrorMessage(error));
+    },
+  });
+
   const onSubmit = (data: SignupFormValues) => {
-    console.log("Signup Form submitted: ", data);
-    router.push("/(app)/(tabs)");
+    signup(data);
+  };
+
+  const handleInputChange = () => {
+    if (error) setError(null);
   };
 
   return {
     control,
+    isError,
     handleSubmit: handleSubmit(onSubmit),
+    isPending,
+    error,
+    setError,
+    handleInputChange,
   };
 }

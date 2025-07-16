@@ -1,0 +1,307 @@
+Save mood, save emotions, save reasons,
+save hours, save note in a collection - save all
+these against today's date.
+
+Fetch everything saved on the home page. (Mood card)
+
+Same data should be visible on the history screen.
+
+Absolutely! Below are **high-quality quotes** tailored to each of the reasons in your `moodReasons` array. Each reason has:
+
+* **A motivational heading**
+* **A quote** that's reflective, positive, or calming, depending on the context of the reason.
+
+---
+
+### **1. Family**
+
+**Heading:** Embrace Connection
+**Quote:** Family isn't just blood—it's love, support, and the people who stand by you when the world doesn't.
+
+---
+
+### **2. Work**
+
+**Heading:** Redefine Purpose
+**Quote:** Work can challenge you, but it shouldn't consume you. Success is best when it's balanced with joy.
+
+---
+
+### **3. Sleep**
+
+**Heading:** Rest to Rise
+**Quote:** A rested mind is a powerful mind. Protect your peace by honoring your need for sleep.
+
+---
+
+### **4. Health**
+
+**Heading:** Choose Wellness
+**Quote:** Your body is your greatest ally. Treat it with care, patience, and gratitude.
+
+---
+
+### **5. School**
+
+**Heading:** Learn, Don’t Just Study
+**Quote:** Education is more than grades—it's growth. Learn for yourself, not just for results.
+
+---
+
+### **6. Social**
+
+**Heading:** Nurture Your Circle
+**Quote:** Choose company that feels like sunlight. You deserve to be around people who make your spirit brighter.
+
+---
+
+### **7. Self-esteem**
+
+**Heading:** Believe in Your Worth
+**Quote:** You are already enough. Confidence starts not from perfection, but from self-acceptance.
+
+---
+
+### **8. Hobbies**
+
+**Heading:** Feed Your Soul
+**Quote:** In your passions, you meet your truest self. Don’t forget to do things just for joy.
+
+---
+
+### **9. Weather**
+
+**Heading:** Dance in the Rain
+**Quote:** Whether sun or storm, beauty exists. Let the weather remind you of life's rhythm, not control your mood.
+
+---
+
+### **10. Food**
+
+**Heading:** Nourish with Kindness
+**Quote:** Food is not guilt—it's fuel, culture, and comfort. Savor it, and respect what your body needs.
+
+---
+
+### **11. Money**
+
+**Heading:** Wealth is Within
+**Quote:** Money can buy things, but not meaning. True richness is peace, purpose, and people.
+
+---
+
+### **12. Exams**
+
+**Heading:** Pressure Creates Diamonds
+**Quote:** An exam doesn’t define you. What matters is effort, progress, and belief in your journey.
+
+---
+
+### **13. Failure**
+
+**Heading:** Fall Forward
+**Quote:** Failure is not the opposite of success—it's a step toward it. Keep walking.
+
+---
+
+### **14. Support**
+
+**Heading:** Lean with Grace
+**Quote:** Asking for help isn’t weakness—it’s strength in vulnerability. You don’t have to go it alone.
+
+---
+
+### **15. Rejection**
+
+**Heading:** Not Meant for You
+**Quote:** Rejection redirects you to what truly belongs to you. Trust the detours.
+
+---
+
+### **16. Wife**
+
+**Heading:** Honor the Bond
+**Quote:** Love is built daily—in kindness, patience, and shared dreams. Cherish the small moments.
+
+---
+
+### **17. Routine**
+
+**Heading:** Stability in Structure
+**Quote:** Routine isn't boring—it's a rhythm that can support freedom. Make it serve your peace, not pressure.
+
+---
+
+### **18. Distant**
+
+**Heading:** Bridges Can Be Rebuilt
+**Quote:** Distance doesn't always mean disconnect. A message, a call, a small effort can heal silence.
+
+---
+
+### **19. Success**
+
+**Heading:** Define It Yourself
+**Quote:** Success isn't a finish line—it’s daily alignment with your values and vision.
+
+---
+
+### **20. Confidence**
+
+**Heading:** Own Your Light
+**Quote:** Confidence isn’t loud—it’s steady. You are capable, even when you don’t feel it.
+
+---
+
+### **21. Rest**
+
+**Heading:** Recharge Without Guilt
+**Quote:** Rest is not a reward. It’s a right. You grow stronger in stillness too.
+
+---
+
+### **22. Stress**
+
+**Heading:** Let Go, Gently
+**Quote:** You’re allowed to pause. Nothing blooms under constant pressure.
+
+---
+
+### **23. Fatigue**
+
+**Heading:** Honor Your Limits
+**Quote:** Tiredness is your body’s wisdom. Listen. You don’t have to earn rest.
+
+---
+
+### **24. Overload**
+
+**Heading:** Simplify the Chaos
+**Quote:** You don’t have to do it all. Prioritize peace over perfection.
+
+---
+
+### **25. Peace**
+
+**Heading:** Protect Your Calm
+**Quote:** Peace is a choice, a boundary, a breath. Guard it fiercely.
+
+---
+
+### **26. Anxiety**
+
+**Heading:** Find Peace
+**Quote:** Spend time outdoors, surrounded by greenery and fresh air. Let nature calm the storm inside.
+
+---
+
+### **27. Motivation**
+
+**Heading:** Start Small
+**Quote:** You don’t need to feel ready. Begin anyway, and motivation will follow action.
+
+---
+
+### **28. Discipline**
+
+**Heading:** Gentle Consistency
+**Quote:** Discipline is self-love in motion—not punishment. Build slowly, forgive freely.
+
+---
+
+### **29. Distraction**
+
+**Heading:** Refocus
+**Quote:** Not everything needs your attention. Clear the clutter and come back to what matters.
+
+---
+
+### **30. Focus**
+
+**Heading:** One Thing at a Time
+**Quote:** When your mind is scattered, bring it back with breath and intention. Clarity grows in silence.
+
+---
+
+### **31. Goals**
+
+**Heading:** Purpose with Patience
+**Quote:** Set goals not to chase worth, but to express your potential. Take one step at a time.
+
+---
+
+### **32. Growth**
+
+**Heading:** Evolve Gently
+**Quote:** Growth isn’t always loud. Sometimes it’s quiet, uncomfortable, and necessary.
+
+---
+
+### **33. Pressure**
+
+**Heading:** Breathe Under the Weight
+**Quote:** Pressure is real—but so is your power. Breathe, reset, and take it moment by moment.
+
+---
+
+### **34. Loneliness**
+
+**Heading:** You’re Not Alone
+**Quote:** Even in silence, you are seen. The right connections will find you when you stay true.
+
+---
+
+### **35. Environment**
+
+**Heading:** Shape Your Space
+**Quote:** Your surroundings impact your soul. Make space for light, nature, and serenity.
+
+---
+
+### **36. Energy**
+
+**Heading:** Fuel What Matters
+**Quote:** Guard your energy like treasure. Spend it where your heart feels alive.
+
+---
+
+### **37. Productivity**
+
+**Heading:** Purpose Over Busyness
+**Quote:** Being busy isn't the same as being fulfilled. Do less. Do it well. Rest when needed.
+
+---
+
+### **38. Insecurity**
+
+**Heading:** You Are Enough
+**Quote:** Insecurity is a shadow—it grows only when you forget your own light.
+
+---
+
+### **39. Achievement**
+
+**Heading:** Celebrate Yourself
+**Quote:** Every step forward counts. You deserve to be proud—even before the finish line.
+
+---
+
+### **40. Responsibility**
+
+**Heading:** Balance the Load
+**Quote:** You carry a lot, but you don’t have to carry it alone. Share the weight when you can.
+
+---
+
+### **41. Expectation**
+
+**Heading:** Free Yourself
+**Quote:** You are not here to meet everyone’s expectations. You are here to live your truth.
+
+---
+
+Let me know if you'd like these exported in **JSON**, or connected to a **Firestore structure** for quote retrieval based on reasons.
+
+
+
+Password : Rr1234$#

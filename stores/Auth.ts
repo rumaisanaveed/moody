@@ -1,9 +1,17 @@
+import { getItem } from "@/services/Storage";
 import { create } from "zustand";
 
-interface IAuthStore {
-  isAuthorized: true;
-}
+type User = {
+  username?: string;
+  email: string;
+};
 
-export const useAuthStore = create<IAuthStore>((set) => ({
-  isAuthorized: true,
+type AuthState = {
+  isAuthorized: boolean;
+  user?: User | null;
+  loading?: boolean;
+};
+
+export const useAuthStore = create<AuthState>((set) => ({
+  isAuthorized: Boolean(getItem("user") || false),
 }));

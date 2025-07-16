@@ -1,7 +1,12 @@
 import { Colors } from "@/constants/Colors";
 import { Regular } from "@/utilities/Fonts";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { TAppButton } from "./types";
 
 const AppButton = ({
@@ -9,6 +14,7 @@ const AppButton = ({
   onPress,
   disabled,
   marginHorizontal,
+  isPending,
   style,
 }: TAppButton) => {
   return (
@@ -26,7 +32,8 @@ const AppButton = ({
       disabled={disabled}
       onPress={onPress}
     >
-      <Text style={styles.title}>{title}</Text>
+      {!isPending && <Text style={styles.title}>{title}</Text>}
+      {isPending && <ActivityIndicator size="small" color={Colors.WHITE} />}
     </TouchableOpacity>
   );
 };

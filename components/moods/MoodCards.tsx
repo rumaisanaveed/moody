@@ -14,6 +14,7 @@ interface IMoodCardsProps {
   style?: StyleProp<ViewStyle>;
 }
 
+// TODO: Manage data inside the container
 const MoodCards = ({
   heading = "",
   hideHeading = false,
@@ -22,7 +23,7 @@ const MoodCards = ({
   return (
     <View style={[styles.cardsContainer, style]}>
       {!hideHeading && <Text style={styles.cardHeader}>{heading}</Text>}
-      <SkeletonLoader isLoading skeleton={<CardSkeleton />}>
+      <SkeletonLoader isLoading={false} skeleton={<CardSkeleton />}>
         <FlatListHandler
           data={cardData ?? []}
           renderItem={({ item, index }) => (

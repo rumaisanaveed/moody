@@ -1,11 +1,15 @@
+import ShowErrorMessage from "@/components/messages/Messages";
 import { Colors } from "@/constants/Colors";
+import useLogout from "@/layouts/Logout/LogoutContainer";
 import { Regular } from "@/utilities/Fonts";
+import { getUserDetails } from "@/utilities/Utils";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function SettingsScreen() {
-  const user = { username: "Alexa", email: "alexa@email.com" };
+  const user = getUserDetails();
+  const { handleLogout, isPending, error } = useLogout();
 
   const InfoSection = ({ label, text }: { label: string; text: string }) => {
     return (
@@ -18,12 +22,18 @@ export default function SettingsScreen() {
 
   return (
     <View style={styles.container}>
-      <InfoSection label="Username" text={user.username} />
-      <InfoSection label="Email" text={user.email} />
-      <TouchableOpacity activeOpacity={0.6} style={styles.logoutBtn}>
+      <InfoSection label="Username" text={user?.username ?? "N/A"} />
+      <InfoSection label="Email" text={user?.email ?? "N/A"} />
+      <TouchableOpacity
+        activeOpacity={0.6}
+        style={styles.logoutBtn}
+        onPress={handleLogout}
+        disabled={isPending}
+      >
         <SimpleLineIcons name="logout" size={18} color={Colors.BLACK_DARK} />
         <Text style={styles.btnText}>Logout</Text>
       </TouchableOpacity>
+      {error && <ShowErrorMessage message={error} />}
     </View>
   );
 }

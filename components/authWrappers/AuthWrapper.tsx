@@ -46,6 +46,7 @@ const AuthWrapper = ({
         alwaysBounceVertical={false}
         bottomOffset={40}
       >
+        {/* TODO: Fix the stylings when the content is overflowing */}
         <View style={styles.container}>
           <View style={styles.logoContainer}>
             <Text style={styles.logoText}>Moody</Text>
@@ -60,7 +61,12 @@ const AuthWrapper = ({
               <Text style={styles.title}>{title}</Text>
               <Text style={styles.subtitle}>{subtitle}</Text>
             </View>
-            <View style={styles.form}>{children}</View>
+            <ScrollView
+              style={styles.form}
+              showsVerticalScrollIndicator={false}
+            >
+              {children}
+            </ScrollView>
           </View>
         </View>
       </KeyboardAwareScrollView>

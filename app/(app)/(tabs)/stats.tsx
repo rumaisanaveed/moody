@@ -59,7 +59,7 @@ const moodData = [
 // 3-4 hrs - 20
 // 5-6 hrs - 30
 // 7-8 hrs - 40
-// 9+hrs - 50
+// 9+ hrs - 50
 const sleepData = [
   {
     value: 50,

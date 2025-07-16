@@ -23,6 +23,40 @@ export const emojis: Record<string, string> = {
   verySad: "😟",
 };
 
+interface IMoodWithScores {
+  text: string;
+  emoji: string;
+  score: number;
+}
+
+export const moodWithScores: IMoodWithScores[] = [
+  {
+    text: "Very Sad",
+    emoji: "😟",
+    score: 10,
+  },
+  {
+    text: "Sad",
+    emoji: "😔",
+    score: 20,
+  },
+  {
+    text: "Neutral",
+    emoji: "😟",
+    score: 30,
+  },
+  {
+    text: "Happy",
+    emoji: "😄",
+    score: 40,
+  },
+  {
+    text: "Very Happy",
+    emoji: "😁",
+    score: 50,
+  },
+];
+
 /**
  * Formats a camelCase emoji key (e.g., 'veryHappy') to a human-readable string (e.g., 'Very Happy').
  * @param key The emoji key in camelCase.
