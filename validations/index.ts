@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { EMAIL, PASSWORD, USERNAME } from "./CommonValidators";
+import { TEXT } from "./validators";
 
 const SignupFormSchema = yupResolver(
   yup.object({
@@ -17,4 +18,10 @@ const LoginFormSchema = yupResolver(
   })
 );
 
-export { LoginFormSchema, SignupFormSchema };
+const NoteSchema = yupResolver(
+  yup.object({
+    note: TEXT,
+  })
+);
+
+export { LoginFormSchema, NoteSchema, SignupFormSchema };

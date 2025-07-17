@@ -8,15 +8,12 @@ import {
   View,
   ViewStyle,
 } from "react-native";
+import { SimpleRadioOption } from "./types";
 
-export interface SimpleRadioOption {
-  label: string;
-  value: string;
-}
-
+// TODO: Fix this code later
 interface RadioGroupProps {
-  selected?: string | null;
-  onSelect: (value: string) => void;
+  selected?: SimpleRadioOption | null;
+  onSelect: (option: SimpleRadioOption) => void;
   options: SimpleRadioOption[];
   containerStyle?: ViewStyle;
   optionStyle?: ViewStyle;
@@ -34,12 +31,12 @@ const RadioGroup = ({
   return (
     <View style={[styles.container, containerStyle]}>
       {options.map((option) => {
-        const isSelected = selected === option.value;
+        const isSelected = selected?.value === option.value;
         return (
           <TouchableOpacity
             key={option.value}
             style={[styles.optionRow, optionStyle]}
-            onPress={() => !disabled && onSelect(option.value)}
+            onPress={() => !disabled && onSelect(option)}
             activeOpacity={0.7}
             disabled={disabled}
           >

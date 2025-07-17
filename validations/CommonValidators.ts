@@ -3,8 +3,6 @@ import * as yup from "yup";
 const EMAIL_REGEX =
   /^(?=.{6,320}$)([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
 
-const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-
 export const USERNAME = yup
   .string()
   .trim()
@@ -17,7 +15,7 @@ export const EMAIL = yup
   .required("Email is required")
   .matches(EMAIL_REGEX, "Invalid email format");
 
-// should contain at least one upper case, one lower case, 
+// should contain at least one upper case, one lower case,
 // atleast 4 numbers and one special character as well.
 export const PASSWORD = yup
   .string()

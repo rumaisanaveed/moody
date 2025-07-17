@@ -171,28 +171,34 @@ export const moodReasons: string[] = [
 export interface SimpleRadioOption {
   label: string;
   value: string;
+  score: number;
 }
 
 export const sleepHoursOptions: SimpleRadioOption[] = [
   {
     label: "0-2 hours",
     value: "0-2",
+    score: 10,
   },
   {
     label: "3-4 hours",
     value: "3-4",
+    score: 20,
   },
   {
     label: "5-6 hours",
     value: "5-6",
+    score: 30,
   },
   {
     label: "7-8 hours",
     value: "7-8",
+    score: 40,
   },
   {
     label: "9+ hours",
     value: "9+",
+    score: 50,
   },
 ];
 

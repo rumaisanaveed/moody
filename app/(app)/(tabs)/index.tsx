@@ -1,3 +1,4 @@
+import { GetSevenDaysMoodEntries } from "@/apis/Mood/Mood";
 import CustomLinearGradient from "@/components/CustomLinearGradient";
 import MoodCards from "@/components/moods/MoodCards";
 import { Colors } from "@/constants/Colors";
@@ -12,6 +13,8 @@ export default function Home() {
   const navigation = useNavigation<any>();
   const emojisList = Object.values(emojis);
   const emojisNewList = [...emojisList, "😔", "😔"];
+
+  const { isLoading, isError, data } = GetSevenDaysMoodEntries();
 
   useFocusEffect(
     useCallback(() => {

@@ -1,25 +1,27 @@
+import { MoodEntry } from "@/apis/Mood/types";
 import { Colors } from "@/constants/Colors";
 import { Bold, Regular, SemiBold } from "@/utilities/Fonts";
+import {
+  getArrayAsCommaSeparatedString,
+  truncateText,
+} from "@/utilities/Utils";
 import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-interface CardItem {
-  mood: any;
-  moodName: string;
-  tipHeading: string;
-  tipText: string;
-  moodText: string;
-  reason: string;
-  noteText: string;
-}
-
 interface CardItemProps {
   index: number;
-  item: CardItem;
+  item: MoodEntry;
+  toggleNoteVisibility: () => void;
+  isCompleteNoteVisible: boolean;
 }
 
-export default function MoodCardItem({ item, index }: CardItemProps) {
+export default function MoodCardItem({
+  item,
+  index,
+  toggleNoteVisibility,
+  isCompleteNoteVisible,
+}: CardItemProps) {
   return (
     <View style={styles.card} key={index}>
       {/* mood & notes */}
@@ -27,36 +29,54 @@ export default function MoodCardItem({ item, index }: CardItemProps) {
         <View style={styles.row}>
           <View style={styles.rowGap1}>
             <Text style={styles.mood}>{item.mood}</Text>
-            <Text style={styles.moodName}>{item.moodName}</Text>
+            <Text style={styles.moodName}>{item.moodText}</Text>
           </View>
         </View>
         <View style={styles.gap10}>
           <View>
             <Text style={styles.moodText}>
               You felt&nbsp;
-              <Text style={styles.moodTextDark}>{item.moodText}</Text>
+              <Text style={styles.moodTextDark}>
+                {getArrayAsCommaSeparatedString(item.emotions)}
+              </Text>
             </Text>
-            <Text style={styles.moodText}>{item.tipText}</Text>
+            <Text style={styles.moodText}>
+              Because of&nbsp;
+              <Text style={styles.moodTextDark}>
+                {getArrayAsCommaSeparatedString(item.reasons)}
+              </Text>
+            </Text>
+            <Text style={styles.moodText}>
+              You had&nbsp;
+              <Text style={styles.moodTextDark}>{item.sleepHours} hours </Text>
+              of sleep.
+            </Text>
           </View>
           <View>
             <Text style={styles.noteText}>
               <Text style={styles.note}>Note:</Text>
-              &nbsp; {item.noteText}
+              &nbsp;
+              {isCompleteNoteVisible ? item.note : truncateText(item.note)}
             </Text>
-            <TouchableOpacity activeOpacity={0.6}>
-              <View style={styles.readMoreButton}>
-                <FontAwesome6
-                  name="add"
-                  size={16}
-                  color={Colors.PURPLE}
-                  style={{
-                    lineHeight: 24,
-                    paddingTop: 1,
-                  }}
-                />
-                <Text style={styles.readMoreText}>Read More</Text>
-              </View>
-            </TouchableOpacity>
+            {item.note.length > 70 && (
+              <TouchableOpacity
+                activeOpacity={0.6}
+                onPress={toggleNoteVisibility}
+              >
+                <View style={styles.readMoreButton}>
+                  <FontAwesome6
+                    name="add"
+                    size={16}
+                    color={Colors.PURPLE}
+                    style={{
+                      lineHeight: 24,
+                      paddingTop: 1,
+                    }}
+                  />
+                  <Text style={styles.readMoreText}>Read More</Text>
+                </View>
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       </View>

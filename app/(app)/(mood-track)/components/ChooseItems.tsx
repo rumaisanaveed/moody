@@ -14,6 +14,7 @@ interface IChooseItemsProps {
   handleClearItems: () => void;
   handleClearItem: (id: number) => void;
   handleAddItem: (id: number, name: string) => void;
+  handleBtnClick?: () => void;
   sectionHeading: string;
   sectionText: string;
   buttonTitle: string;
@@ -33,9 +34,8 @@ const ChooseItems = ({
   disabled,
   navigationPath,
   listTitle,
+  handleBtnClick,
 }: IChooseItemsProps) => {
-  const router = useRouter();
-
   return (
     <CustomLinearGradient gradientColor={Colors.SKY_BLUE}>
       <SafeAreaView style={styles.container}>
@@ -54,7 +54,7 @@ const ChooseItems = ({
           <AppButton
             title={buttonTitle}
             disabled={disabled}
-            onPress={() => router.push(navigationPath)}
+            onPress={handleBtnClick}
           />
         </View>
       </SafeAreaView>

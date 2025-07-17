@@ -1,17 +1,15 @@
 import AppButton from "@/components/buttons/AppButton/AppButton";
 import CustomLinearGradient from "@/components/CustomLinearGradient";
-import RadioGroup from "@/components/input/RadioGroup";
-import { useRadioGroup } from "@/components/input/RadioGroupContainer";
+import RadioGroup from "@/components/input/RadioGroup/RadioGroup";
+import { useRadioGroup } from "@/components/input/RadioGroup/RadioGroupContainer";
 import SectionHeader from "@/components/SectionHeader";
 import { Colors } from "@/constants/Colors";
 import { sleepHoursOptions } from "@/constants/Data";
-import { useRouter } from "expo-router";
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 
 const SelectHoursOfSleep = () => {
-  const { selected, setSelected } = useRadioGroup();
-  const router = useRouter();
+  const { selected, setSelected, handleClick } = useRadioGroup();
 
   return (
     <CustomLinearGradient gradientColor={Colors.SKY_BLUE}>
@@ -30,7 +28,7 @@ const SelectHoursOfSleep = () => {
         <AppButton
           title="Continue"
           disabled={selected === null}
-          onPress={() => router.push("/(app)/(mood-track)/add-note")}
+          onPress={handleClick}
         />
       </SafeAreaView>
     </CustomLinearGradient>

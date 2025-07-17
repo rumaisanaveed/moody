@@ -1,5 +1,7 @@
 import { months, weekDays } from "@/constants/Data";
 import { getItem } from "@/services/Storage";
+import { ISelectedItem } from "@/types/List";
+import { STORAGE_CONST } from "./Constants";
 
 const sliceString = (value: string): string => {
   return value.slice(0, 3);
@@ -8,7 +10,7 @@ const sliceString = (value: string): string => {
 export const getCurrentDay = (): string => {
   const now = new Date();
   const currentDayOfWeek = now.getDay();
-  const currentDayName = weekDays[currentDayOfWeek];
+  const currentDayName = weekDays[currentDayOfWeek - 1];
   return currentDayName;
 };
 
@@ -35,12 +37,37 @@ export const capitalizeFirstCharAndJoin = (text: string) => {
 };
 
 export const getUserDetails = () => {
-  const userData = getItem("user");
-  console.log("user data", userData);
+  const userData = getItem(STORAGE_CONST.USER);
   if (!userData) return null;
   return {
-    // id: userData.uid,
+    id: userData.uid,
     email: userData.email,
     username: userData.displayName,
   };
+};
+
+export const getNamesArray = (items: ISelectedItem[]) => {
+  return items.map((item) => item.name);
+};
+
+export const getCurrentDateString = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDay()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+export const getArrayAsCommaSeparatedString = (array: string[]) => {
+  return array.map((reason) => reason).join(", ");
+};
+
+export const truncateText = (text: string) => {
+  if (!text) return "";
+  if (text.length > 70) {
+    return text.slice(0, 70) + "...";
+  }
+  if (text.length < 70) {
+    return text;
+  }
 };

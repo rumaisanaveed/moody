@@ -4,13 +4,11 @@ import SectionHeader from "@/components/SectionHeader";
 import { Colors } from "@/constants/Colors";
 import { EmojiList } from "@/layouts/ChooseMood/ChooseMoodComponents";
 import useChooseMood from "@/layouts/ChooseMood/ChooseMoodContainer";
-import { useRouter } from "expo-router";
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 
 const ChooseCurrentMood = () => {
-  const router = useRouter();
-  const { selectedEmojiId, handleSelectEmoji } = useChooseMood();
+  const { selectedEmojiId, handleSelectEmoji, handleClick } = useChooseMood();
 
   return (
     <CustomLinearGradient gradientColor={Colors.SKY_BLUE}>
@@ -29,7 +27,7 @@ const ChooseCurrentMood = () => {
         <AppButton
           title="Continue"
           disabled={selectedEmojiId === null}
-          onPress={() => router.push("/(app)/(mood-track)/choose-emotions")}
+          onPress={handleClick}
         />
       </SafeAreaView>
     </CustomLinearGradient>

@@ -1,6 +1,7 @@
 import { auth, db } from "@/services/firebaseConfig";
 import { removeItem } from "@/services/Storage";
 import { useAuthStore } from "@/stores/Auth";
+import { STORAGE_CONST } from "@/utilities/Constants";
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import {
   createUserWithEmailAndPassword,
@@ -57,7 +58,6 @@ export function Login(options?: UseMutationOptions<User, any, LoginPayload>) {
           email,
           password
         );
-        // console.log("User after login", userCredential.user);
         return userCredential.user;
       } catch (error) {
         throw error;
@@ -72,7 +72,7 @@ export function Logout(options?: UseMutationOptions) {
     mutationFn: async function () {
       try {
         await signOut(auth);
-        removeItem("user");
+        removeItem(STORAGE_CONST.USER);
         useAuthStore.setState({ isAuthorized: false });
       } catch (error) {
         throw error;

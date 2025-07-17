@@ -1,5 +1,5 @@
 import { Login } from "@/apis/Auth";
-import { setItem } from "@/services/Storage";
+import { saveUser } from "@/services/Storage";
 import { useAuthStore } from "@/stores/Auth";
 import { LoginFormSchema } from "@/validations";
 import { FirebaseError } from "firebase/app";
@@ -36,8 +36,7 @@ export function useLogin() {
     isSuccess,
   } = Login({
     onSuccess(data) {
-      // console.log("User after login", data);
-      setItem("user", data);
+      saveUser(data);
       useAuthStore.setState({
         isAuthorized: true,
       });

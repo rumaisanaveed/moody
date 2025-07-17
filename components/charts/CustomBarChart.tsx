@@ -22,7 +22,7 @@ const CustomBarChart = ({
     <View style={[styles.chartContainer, style]}>
       <Text style={styles.chartTitle}>{heading}</Text>
       <BarChart
-        barWidth={30}
+        barWidth={25}
         noOfSections={4}
         maxValue={100}
         barBorderRadius={20}

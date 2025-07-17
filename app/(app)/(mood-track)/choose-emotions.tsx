@@ -8,6 +8,7 @@ const ChooseEmotions = () => {
     handleAddEmotion,
     handleClearEmotion,
     handleClearEmotions,
+    handleClick,
   } = useChooseEmotions();
 
   return (
@@ -22,6 +23,7 @@ const ChooseEmotions = () => {
       disabled={selectedEmotions.length !== 3}
       navigationPath="/(app)/(mood-track)/choose-reasons"
       listTitle="Emotions"
+      handleBtnClick={handleClick}
     />
   );
 };

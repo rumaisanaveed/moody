@@ -1,5 +1,5 @@
 import { Signup } from "@/apis/Auth";
-import { setItem } from "@/services/Storage";
+import { saveUser } from "@/services/Storage";
 import { useAuthStore } from "@/stores/Auth";
 import { SignupFormSchema } from "@/validations";
 import { FirebaseError } from "firebase/app";
@@ -40,9 +40,7 @@ export function useSignup() {
     isError,
   } = Signup({
     onSuccess(data) {
-      // console.log("User after signup", data);
-      setItem("user", data);
-      // set user to storage
+      saveUser(data);
       useAuthStore.setState({ isAuthorized: true });
     },
     onError(error: FirebaseError) {

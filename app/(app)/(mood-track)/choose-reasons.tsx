@@ -8,6 +8,7 @@ const ChooseReasons = () => {
     handleAddReason,
     handleClearReason,
     handleClearReasons,
+    handleClick,
   } = useChooseReasons();
 
   return (
@@ -22,6 +23,7 @@ const ChooseReasons = () => {
       disabled={selectedReasons.length !== 3}
       navigationPath="/(app)/(mood-track)/select-hours"
       listTitle="Reasons"
+      handleBtnClick={handleClick}
     />
   );
 };

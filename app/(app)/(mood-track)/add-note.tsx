@@ -8,7 +8,7 @@ import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 
 const AddNote = () => {
-  const { control, handleSubmit } = useAddNote();
+  const { control, handleSubmit, isPending } = useAddNote();
 
   return (
     <CustomLinearGradient gradientColor={Colors.SKY_BLUE}>
@@ -27,7 +27,7 @@ const AddNote = () => {
             control={control}
           />
         </ScrollView>
-        <AppButton title="Save" onPress={handleSubmit} />
+        <AppButton title="Save" onPress={handleSubmit} isPending={isPending} />
       </SafeAreaView>
     </CustomLinearGradient>
   );

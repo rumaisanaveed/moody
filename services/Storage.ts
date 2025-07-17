@@ -1,3 +1,4 @@
+import { STORAGE_CONST } from "@/utilities/Constants";
 import { MMKV } from "react-native-mmkv";
 
 const storage = new MMKV();
@@ -23,3 +24,13 @@ export const setItem = (
 };
 
 export const removeItem = (key: string) => storage.delete(key);
+
+export const saveToMoodEntry = (newData: object) => {
+  const savedData = getItem(STORAGE_CONST.MOOD_ENTRY) || {};
+  const updatedData = { ...savedData, ...newData };
+  setItem(STORAGE_CONST.MOOD_ENTRY, updatedData);
+};
+
+export const saveUser = (data: object) => {
+  setItem(STORAGE_CONST.USER, data);
+};
