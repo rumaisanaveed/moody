@@ -17,22 +17,7 @@ const Login = () => {
       mode="login"
       bottomText="Don't have an account?"
     >
-      {/* <AppInput
-        label="Email"
-        control={control}
-        name="email"
-        placeholder="example@gmail.com"
-        keyboardType="email-address"
-        onChange={handleInputChange}
-      /> */}
       <EmailInput onChange={handleClearError} control={control} />
-      {/* <AppInput
-        label="Password"
-        name="password"
-        isPassword
-        control={control}
-        onChange={handleInputChange}
-      /> */}
       <PasswordInput onChange={handleClearError} control={control} />
       {error && <ShowErrorMessage message={error} />}
       <AppButton

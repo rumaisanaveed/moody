@@ -26,23 +26,7 @@ export default function Signup() {
         keyboardType="default"
         onChange={handleClearError}
       />
-      {/* <AppInput
-        control={control}
-        name="email"
-        label="Email"
-        placeholder="example@gmail.com"
-        keyboardType="email-address"
-        onChange={handleClearError}
-      /> */}
       <EmailInput onChange={handleClearError} control={control} />
-      {/* <AppInput
-        control={control}
-        name="password"
-        label="Password"
-        placeholder="Enter your password"
-        onChange={handleClearError}
-        isPassword
-      /> */}
       <PasswordInput onChange={handleClearError} control={control} />
       {error && <ShowErrorMessage message={error} />}
       <AppButton
