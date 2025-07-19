@@ -1,40 +1,41 @@
 import { Colors } from "@/constants/Colors";
-import { DayItemProps } from "@/types/tabs/Home";
 import { Bold, Regular } from "@/utilities/Fonts";
-import { getCurrentDay } from "@/utilities/Utils";
+import { formatDayLabel, getCurrentDay } from "@/utilities/Utils";
 import { StyleSheet, Text, View } from "react-native";
 
 interface IRenderItemProps {
-  item: DayItemProps;
+  item: string;
   index: number;
-  emojisList: any[];
+  mood?: string;
 }
 
 export default function DayAndMoodItem({
   item,
   index,
-  emojisList,
+  mood,
 }: IRenderItemProps) {
   const currentDayName = getCurrentDay();
-  const isCurrentDay = item.name.toLowerCase() === currentDayName.toLowerCase();
+  const isCurrentDay = item.toLowerCase() === currentDayName.toLowerCase();
   return (
-    <View style={styles.dayAndEmojiContainer}>
+    <View style={styles.dayAndEmojiContainer} key={index}>
       <View style={[styles.dayItem, isCurrentDay && styles.currentDayItem]}>
         <Text style={isCurrentDay && styles.currentDayText}>
-          {item.name.slice(0, 3)}
+          {formatDayLabel(item)}
         </Text>
         <Text style={[styles.dayNo, isCurrentDay && styles.currentDayText]}>
-          {item.id + 1}
+          {index + 1}
         </Text>
       </View>
-      <View
-        style={[
-          styles.emojiContainer,
-          isCurrentDay && styles.selectedEmojiContainer,
-        ]}
-      >
-        <Text style={styles.emoji}>{emojisList[index]}</Text>
-      </View>
+      {mood && (
+        <View
+          style={[
+            styles.emojiContainer,
+            isCurrentDay && styles.selectedEmojiContainer,
+          ]}
+        >
+          <Text style={styles.emoji}>{mood}</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.WHITE,
     paddingHorizontal: 20,
     paddingVertical: 20,
+    width: 70,
     gap: 7,
     borderRadius: 30,
     alignItems: "center",

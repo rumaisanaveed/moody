@@ -1,6 +1,5 @@
-import ShowErrorMessage from "@/components/messages/Messages";
 import { Colors } from "@/constants/Colors";
-import useLogout from "@/layouts/Logout/LogoutContainer";
+import useLogout from "@/layouts/Auth/Logout/LogoutContainer";
 import { Regular } from "@/utilities/Fonts";
 import { getUserDetails } from "@/utilities/Utils";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
@@ -9,7 +8,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function SettingsScreen() {
   const user = getUserDetails();
-  const { handleLogout, isPending, error } = useLogout();
+  const { handleLogout, isPending } = useLogout();
 
   const InfoSection = ({ label, text }: { label: string; text: string }) => {
     return (
@@ -33,7 +32,6 @@ export default function SettingsScreen() {
         <SimpleLineIcons name="logout" size={18} color={Colors.BLACK_DARK} />
         <Text style={styles.btnText}>Logout</Text>
       </TouchableOpacity>
-      {error && <ShowErrorMessage message={error} />}
     </View>
   );
 }

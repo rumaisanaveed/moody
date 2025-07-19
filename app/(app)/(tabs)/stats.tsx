@@ -1,127 +1,89 @@
+import { IBarChartData } from "@/apis/Mood/types";
 import CustomBarChart from "@/components/charts/CustomBarChart";
+import BarChartSkeleton from "@/components/skeletons/BarChartSkeleton";
+import SkeletonLoader from "@/components/skeletons/SkeletonLoader";
 import { Colors } from "@/constants/Colors";
-import { moodsYLabels, sleepYLabels } from "@/constants/Data";
-import { Bold, SemiBold } from "@/utilities/Fonts";
+import { moodsYLabels, sleepYLabels, weekDays } from "@/constants/Data";
+import useBarChart from "@/layouts/BarChart/BarChartContainer";
+import { Bold, Regular, SemiBold } from "@/utilities/Fonts";
+import {
+  formatDayLabel,
+  getBarChartColor,
+  normalizeValue,
+} from "@/utilities/Utils";
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-// very sad - 10
-// sad - 20
-// neutral - 30
-// happy - 40
-// very happy - 50
-const moodData = [
-  {
-    value: 50,
-    frontColor: "#7CF29C",
-    label: "Mon",
-    topLabelComponent: () => <Text style={styles.emoji}>😍</Text>,
-  },
-  {
-    value: 30,
-    frontColor: "#F15B5D",
-    label: "Tues",
-    topLabelComponent: () => <Text style={styles.emoji}>😡</Text>,
-  },
-  {
-    value: 40,
-    frontColor: "#86C9F5",
-    label: "Wed",
-    topLabelComponent: () => <Text style={styles.emoji}>😌</Text>,
-  },
-  {
-    value: 10,
-    frontColor: "#F9B26B",
-    label: "Thurs",
-    topLabelComponent: () => <Text style={styles.emoji}>😞</Text>,
-  },
-  {
-    value: 30,
-    frontColor: "#F15B5D",
-    label: "Fri",
-    topLabelComponent: () => <Text style={styles.emoji}>😡</Text>,
-  },
-  {
-    value: 30,
-    frontColor: "#F15B5D",
-    label: "Sat",
-    topLabelComponent: () => <Text style={styles.emoji}>😡</Text>,
-  },
-  {
-    value: 30,
-    frontColor: "#F15B5D",
-    label: "Sun",
-    topLabelComponent: () => <Text style={styles.emoji}>😡</Text>,
-  },
-];
+function getChartData({
+  barChartsData,
+  scoreKey,
+  withEmoji = false,
+  styles,
+}: {
+  barChartsData: IBarChartData[] | null;
+  scoreKey: "moodScore" | "sleepScore";
+  withEmoji?: boolean;
+  styles: any;
+}) {
+  return weekDays.map((day) => {
+    const found = barChartsData?.find((item) => item.day === day);
+    return found
+      ? {
+          label: formatDayLabel(day),
+          frontColor: getBarChartColor(found[scoreKey]),
+          // to make sure that the bar still has some height and doesn't overlap
+          // with the x axis label
+          value: found[scoreKey] === 10 ? 5 : normalizeValue(found[scoreKey]),
+          ...(withEmoji && {
+            topLabelComponent: () => (
+              <Text style={styles.emoji}>{found.mood}</Text>
+            ),
+          }),
+        }
+      : {
+          label: formatDayLabel(day),
+          frontColor: Colors.DEFAULT_CHART_COLOR,
+          value: 0,
+        };
+  });
+}
 
-// 0-2 hrs - 10
-// 3-4 hrs - 20
-// 5-6 hrs - 30
-// 7-8 hrs - 40
-// 9+ hrs - 50
-const sleepData = [
-  {
-    value: 50,
-    frontColor: "#7CF29C",
-    label: "Mon",
-    topLabelComponent: () => <Text style={styles.emoji}>😍</Text>,
-  },
-  {
-    value: 30,
-    frontColor: "#F15B5D",
-    label: "Tues",
-    topLabelComponent: () => <Text style={styles.emoji}>😡</Text>,
-  },
-  {
-    value: 40,
-    frontColor: "#86C9F5",
-    label: "Wed",
-    topLabelComponent: () => <Text style={styles.emoji}>😌</Text>,
-  },
-  {
-    value: 10,
-    frontColor: "#F9B26B",
-    label: "Thurs",
-    topLabelComponent: () => <Text style={styles.emoji}>😞</Text>,
-  },
-  {
-    value: 30,
-    frontColor: "#F15B5D",
-    label: "Fri",
-    topLabelComponent: () => <Text style={styles.emoji}>😡</Text>,
-  },
-  {
-    value: 30,
-    frontColor: "#F15B5D",
-    label: "Sat",
-    topLabelComponent: () => <Text style={styles.emoji}>😡</Text>,
-  },
-  {
-    value: 30,
-    frontColor: "#F15B5D",
-    label: "Sun",
-    topLabelComponent: () => <Text style={styles.emoji}>😡</Text>,
-  },
-];
+export default function Charts() {
+  const { barChartsData, isPending, isError } = useBarChart();
 
-export default function MoodChart() {
+  const moodChartData = getChartData({
+    barChartsData,
+    scoreKey: "moodScore",
+    withEmoji: true,
+    styles,
+  });
+
+  const sleepChartData = getChartData({
+    barChartsData,
+    scoreKey: "sleepScore",
+    withEmoji: true,
+    styles,
+  });
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.pb10}>
-        <CustomBarChart
-          heading="Mood Chart"
-          data={moodData}
-          yAxisLabels={moodsYLabels}
-          rotateYLabels={true}
-        />
-        <CustomBarChart
-          heading="Sleep Chart"
-          data={sleepData}
-          style={styles.mt20}
-          yAxisLabels={sleepYLabels}
-        />
+        <SkeletonLoader isLoading={isPending} skeleton={<BarChartSkeleton />}>
+          <CustomBarChart
+            heading="Mood Chart"
+            data={moodChartData}
+            yAxisLabels={moodsYLabels}
+            rotateYLabels={true}
+          />
+          <CustomBarChart
+            heading="Sleep Chart"
+            data={sleepChartData}
+            style={styles.mt20}
+            yAxisLabels={sleepYLabels}
+          />
+        </SkeletonLoader>
       </ScrollView>
+      {isError && <Text style={styles.error}>Oops! Failed to load charts</Text>}
     </View>
   );
 }
@@ -160,5 +122,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
     marginBottom: 0,
+  },
+  error: {
+    ...Regular(30, Colors.RED),
   },
 });

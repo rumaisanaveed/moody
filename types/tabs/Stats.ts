@@ -4,5 +4,5 @@ export interface BarItemProps {
   value: number;
   label: string;
   frontColor: string;
-  topLabelComponent: () => ReactNode;
+  topLabelComponent?: () => ReactNode;
 }

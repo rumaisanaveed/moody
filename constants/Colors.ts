@@ -22,10 +22,12 @@ export const Colors = {
   // SHADOW COLOR
   SHADOW_COLOR: "#000",
   // CHART
-  GREEN_LIGHT: "#6DEE89",
-  RED_LIGHT: "#FF574D",
-  BLUE_LIGHT: "#68A5FF",
-  ORANGE_LIGHT: "#FF8540",
+  CHART_ORANGE: "#F9B26B", // very sad - 10
+  CHART_GREY: "#A3B8D9", // sad - 20
+  CHART_RED: "#F15B5D", // neutral - 30
+  CHART_LIGHT_BLUE: "#86C9F5", // happy - 40
+  CHART_GREEN: "#7CF29C", // very happy - 50
+  DEFAULT_CHART_COLOR: "#E4DDF9",
   // ERROR
   RED: "red",
 };

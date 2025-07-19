@@ -71,11 +71,11 @@ export function formatEmojiKey(key: string): string {
 export const emojisList = Object.values(emojis);
 
 export const moodsYLabels: string[] = [
+  "Very Sad",
+  "Sad",
+  "Neutral",
   "Happy",
   "Very Happy",
-  "Neutral",
-  "Sad",
-  "Very Sad",
 ];
 
 export const sleepYLabels: string[] = [

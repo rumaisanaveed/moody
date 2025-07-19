@@ -4,6 +4,7 @@ import { QUERY_KEYS, STORAGE_CONST } from "@/utilities/Constants";
 import {
   getCurrentDateString,
   getCurrentDay,
+  getSevenDaysAgoDate,
   getUserDetails,
 } from "@/utilities/Utils";
 import {
@@ -16,10 +17,14 @@ import {
   collection,
   doc,
   getDocs,
+  limit,
+  query,
   serverTimestamp,
   setDoc,
+  Timestamp,
+  where,
 } from "firebase/firestore";
-import { MoodEntry } from "./types";
+import { IMoodData, IMoodEntry, IQuote } from "./types";
 
 export function AddMoodEntry(options?: UseMutationOptions) {
   const user = getUserDetails();
@@ -43,23 +48,68 @@ export function AddMoodEntry(options?: UseMutationOptions) {
 }
 
 export function GetSevenDaysMoodEntries(
-  options?: UseQueryOptions<MoodEntry[], Error>
+  options?: UseQueryOptions<IMoodData[], Error>
 ) {
-  return useQuery<MoodEntry[], Error>({
+  return useQuery<IMoodData[], Error>({
     queryKey: [QUERY_KEYS.MOOD_ENTRIES],
     queryFn: async () => {
       try {
         const userId = getUserDetails()?.id;
-        const docRef = collection(db, `users/${userId}/moodEntries`);
-        const snapshot = await getDocs(docRef);
-        const data = snapshot.docs.map((doc) => ({
+        const sevenDaysAgo = getSevenDaysAgoDate();
+        const moodEntriesQuery = query(
+          collection(db, `users/${userId}/moodEntries`),
+          where("timestamp", ">=", Timestamp.fromDate(sevenDaysAgo))
+        );
+        const snapshot = await getDocs(moodEntriesQuery);
+        let moodEntries = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
+        })) as IMoodEntry[];
+
+        const defaultQuote: IQuote = {
+          heading: "",
+          id: "",
+          quote: "",
+          reasons: [],
+        };
+        // Get quote wrt reason and modify the mood entries to attach corresponding quote to each entry
+        const moodEntriesWithQuotes = await Promise.all(
+          moodEntries.map(async (item) => {
+            let quote = defaultQuote;
+            if (item.reasons && item.reasons.length > 0) {
+              const quotesQuery = query(
+                collection(db, "quotes"),
+                where("reasons", "array-contains-any", item.reasons),
+                limit(1)
+              );
+              const quotesSnapshot = await getDocs(quotesQuery);
+              if (!quotesSnapshot.empty) {
+                const doc = quotesSnapshot.docs[0];
+                const quoteData = doc.data();
+                quote = {
+                  id: doc.id,
+                  quote: quoteData.quote,
+                  heading: quoteData.heading,
+                  reasons: quoteData.reasons,
+                };
+              }
+            }
+            return { ...item, quote };
+          })
+        );
+
+        // charts data
+        const barChartsData = moodEntriesWithQuotes.map((item) => ({
+          mood: item.mood,
+          moodScore: item.moodScore,
+          sleepScore: item.sleepScore,
+          day: item.dayOfWeek,
         }));
-        return data as MoodEntry[];
+
+        const result = [{ moodEntries: moodEntriesWithQuotes, barChartsData }];
+        return result;
       } catch (error) {
         console.log("An error occured in fetching mood entries", error);
-        // to not get undefined
         return [];
       }
     },

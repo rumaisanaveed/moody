@@ -24,9 +24,8 @@ const CustomBarChart = ({
       <BarChart
         barWidth={25}
         noOfSections={4}
-        maxValue={100}
+        maxValue={50}
         barBorderRadius={20}
-        frontColor="#A3A3A3"
         data={data}
         yAxisLabelWidth={rotateYLabels ? 90 : 50}
         yAxisThickness={0}
@@ -44,7 +43,7 @@ const CustomBarChart = ({
           ...Regular(14, Colors.BLACK_DARK),
         }}
         hideRules
-        isAnimated
+        // isAnimated
         formatYLabel={(label) => {
           return label;
         }}

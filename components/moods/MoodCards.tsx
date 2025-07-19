@@ -5,8 +5,8 @@ import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
 import FlatListHandler from "../flatListHandler/FlatListHandler";
 import CardSkeleton from "../skeletons/CardSkeleton";
 import SkeletonLoader from "../skeletons/SkeletonLoader";
+import useHome from "./HomeContainer";
 import MoodCardItem from "./MoodCardComponents";
-import useMoodCards from "./MoodCardsContainer";
 
 interface IMoodCardsProps {
   hideHeading?: boolean;
@@ -22,16 +22,17 @@ const MoodCards = ({
   const {
     isPending,
     isError,
-    data,
     toggleNoteVisibility,
     isCompleteNoteVisible,
-  } = useMoodCards();
+    moodEntriesData,
+  } = useHome();
+
   return (
     <View style={[styles.cardsContainer, style]}>
       {!hideHeading && <Text style={styles.cardHeader}>{heading}</Text>}
       <SkeletonLoader isLoading={isPending} skeleton={<CardSkeleton />}>
         <FlatListHandler
-          data={data ?? []}
+          data={moodEntriesData ?? []}
           renderItem={({ item, index }) => (
             <MoodCardItem
               item={item}

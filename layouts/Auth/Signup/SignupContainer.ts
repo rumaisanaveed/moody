@@ -52,7 +52,7 @@ export function useSignup() {
     signup(data);
   };
 
-  const handleInputChange = () => {
+  const handleClearError = () => {
     if (error) setError(null);
   };
 
@@ -63,6 +63,6 @@ export function useSignup() {
     isPending,
     error,
     setError,
-    handleInputChange,
+    handleClearError,
   };
 }

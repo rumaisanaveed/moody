@@ -50,7 +50,7 @@ export function useLogin() {
     login(data);
   };
 
-  const handleInputChange = () => {
+  const handleClearError = () => {
     if (error) setError(null);
   };
 
@@ -59,7 +59,7 @@ export function useLogin() {
     error,
     control,
     isSuccess,
-    handleInputChange,
+    handleClearError,
     handleSubmit: handleSubmit(onSubmit),
   };
 }

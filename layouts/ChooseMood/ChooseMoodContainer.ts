@@ -12,7 +12,7 @@ export default function useChooseMood() {
   };
 
   const handleClick = () => {
-    if (selectedEmojiId) {
+    if (selectedEmojiId !== null) {
       const selectedMood = moodWithScores[selectedEmojiId];
       const { text: moodText, emoji: mood, score: moodScore } = selectedMood;
       const moodData = {

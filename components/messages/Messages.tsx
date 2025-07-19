@@ -1,9 +1,15 @@
 import { Colors } from "@/constants/Colors";
 import { Regular } from "@/utilities/Fonts";
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleProp, StyleSheet, Text, ViewStyle } from "react-native";
 
-export default function ShowErrorMessage({ message }: { message: string }) {
+export default function ShowErrorMessage({
+  message,
+  style,
+}: {
+  message: string;
+  style?: StyleProp<ViewStyle>;
+}) {
   return <Text style={styles.error}>{message}</Text>;
 }
 

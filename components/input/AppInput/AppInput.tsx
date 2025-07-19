@@ -49,13 +49,15 @@ const AppInput = ({
       {label && (
         <Text style={[styles.label, !error && styles.mt10]}>{label}</Text>
       )}
-        <View 
-          style={styles.row}>
+      <View style={styles.row}>
         <TextInput
           style={[
             styles.input,
             isPassword ? styles.password : styles.fullWidth,
-            multiline && { height: numberOfLines * 24, textAlignVertical: "top" },
+            multiline && {
+              height: numberOfLines * 24,
+              textAlignVertical: "top",
+            },
             style,
           ]}
           secureTextEntry={showPassword}
@@ -67,27 +69,26 @@ const AppInput = ({
           placeholder={isPassword ? "Show Password" : placeholder}
           {...rest}
         />
-        <View 
-          style={styles.passwordInputContainer}>
+        <View style={styles.passwordInputContainer}>
           {isPassword && (
-          <TouchableWithoutFeedback onPress={togglePasswordVisibility}>
-            {showPassword ? (
-              <AntDesign
-                name="eye"
-                size={24}
-                color={Colors.BLACK}
-                style={styles.eyeButton}
-              />
-            ) : (
-              <Feather
-                name="eye-off"
-                size={24}
-                color={Colors.BLACK}
-                style={styles.eyeButton}
-              />
-            )}
-          </TouchableWithoutFeedback>
-        )}
+            <TouchableWithoutFeedback onPress={togglePasswordVisibility}>
+              {showPassword ? (
+                <AntDesign
+                  name="eye"
+                  size={24}
+                  color={Colors.BLACK}
+                  style={styles.eyeButton}
+                />
+              ) : (
+                <Feather
+                  name="eye-off"
+                  size={24}
+                  color={Colors.BLACK}
+                  style={styles.eyeButton}
+                />
+              )}
+            </TouchableWithoutFeedback>
+          )}
         </View>
       </View>
       {error && <Text style={styles.error}>{error}</Text>}
@@ -108,10 +109,10 @@ const styles = StyleSheet.create({
   mt10: {
     marginTop: 10,
   },
-  row : {
-    flexDirection :"row",
-    alignItems : "center",
-    justifyContent : "space-between",
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   input: {
     borderWidth: 1,
@@ -121,31 +122,31 @@ const styles = StyleSheet.create({
     ...Regular(14, Colors.BLACK_DARK),
     alignItems: "center",
   },
-  password : {
-    width : "90%",
-    borderRightWidth : 0,
-    borderTopRightRadius : 0,
-    borderBottomRightRadius : 0,
+  password: {
+    width: "90%",
+    borderRightWidth: 0,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
   },
-  fullWidth : {
-    width : "100%",
+  fullWidth: {
+    width: "100%",
   },
-  passwordInputContainer : {
-    marginRight : 0,
-    paddingRight : 20,
+  passwordInputContainer: {
+    marginRight: 0,
+    paddingRight: 20,
   },
   eyeButton: {
-    flex : 1,
-    borderWidth : 1,
-    paddingRight : 5,
-    borderTopLeftRadius : 0,
-    borderBottomLeftRadius : 0,
-    borderLeftWidth : 0,
-    borderColor : Colors.GRAY,
-    borderRadius : 8,
-    alignItems : "center",
-    justifyContent : "center",
-    paddingTop : 10,
+    flex: 1,
+    borderWidth: 1,
+    paddingRight: 5,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+    borderLeftWidth: 0,
+    borderColor: Colors.GRAY,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 10,
   },
   error: {
     marginTop: 4,

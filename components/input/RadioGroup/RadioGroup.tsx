@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { SimpleRadioOption } from "./types";
 
-// TODO: Fix this code later
 interface RadioGroupProps {
   selected?: SimpleRadioOption | null;
   onSelect: (option: SimpleRadioOption) => void;

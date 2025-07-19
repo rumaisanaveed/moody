@@ -21,6 +21,7 @@ interface IChooseItemsProps {
   disabled: boolean;
   navigationPath: Parameters<ReturnType<typeof useRouter>["push"]>[0];
   listTitle: string;
+  items: string[];
 }
 
 const ChooseItems = ({
@@ -32,6 +33,7 @@ const ChooseItems = ({
   sectionText,
   buttonTitle,
   disabled,
+  items,
   navigationPath,
   listTitle,
   handleBtnClick,
@@ -48,7 +50,11 @@ const ChooseItems = ({
                 handleClearItem={handleClearItem}
                 handleClearItems={handleClearItems}
               />
-              <ItemsList handleAddItem={handleAddItem} title={listTitle} />
+              <ItemsList
+                items={items}
+                handleAddItem={handleAddItem}
+                title={listTitle}
+              />
             </View>
           </ScrollView>
           <AppButton

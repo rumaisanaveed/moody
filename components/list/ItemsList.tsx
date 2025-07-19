@@ -1,19 +1,19 @@
 import { Colors } from "@/constants/Colors";
-import { emotions } from "@/constants/Data";
 import { Regular, SemiBold } from "@/utilities/Fonts";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface IListItemsProps {
   handleAddItem: (id: number, item: string) => void;
   title: string;
+  items: string[];
 }
 
-export function ItemsList({ handleAddItem, title }: IListItemsProps) {
+export function ItemsList({ handleAddItem, title, items }: IListItemsProps) {
   return (
     <View>
       <Text style={styles.heading}>All {title}</Text>
       <View style={styles.emotionsList}>
-        {emotions.map((item, index) => (
+        {items.map((item, index) => (
           <TouchableOpacity
             activeOpacity={0.8}
             style={[styles.emotionContainer]}

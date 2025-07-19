@@ -1,4 +1,4 @@
-import { MoodEntry } from "@/apis/Mood/types";
+import { IMoodEntry } from "@/apis/Mood/types";
 import { Colors } from "@/constants/Colors";
 import { Bold, Regular, SemiBold } from "@/utilities/Fonts";
 import {
@@ -11,7 +11,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface CardItemProps {
   index: number;
-  item: MoodEntry;
+  item: IMoodEntry;
   toggleNoteVisibility: () => void;
   isCompleteNoteVisible: boolean;
 }
@@ -22,15 +22,18 @@ export default function MoodCardItem({
   toggleNoteVisibility,
   isCompleteNoteVisible,
 }: CardItemProps) {
+  const shouldDisplayQuote =
+    item.quote.heading !== "" && item.quote.quote !== "";
   return (
     <View style={styles.card} key={index}>
       {/* mood & notes */}
-      <View style={[styles.gap10, styles.borderBottom]}>
+      <View style={[styles.gap10, shouldDisplayQuote && styles.borderBottom]}>
         <View style={styles.row}>
           <View style={styles.rowGap1}>
             <Text style={styles.mood}>{item.mood}</Text>
             <Text style={styles.moodName}>{item.moodText}</Text>
           </View>
+          <Text style={styles.day}>{item.dayOfWeek}</Text>
         </View>
         <View style={styles.gap10}>
           <View>
@@ -48,7 +51,9 @@ export default function MoodCardItem({
             </Text>
             <Text style={styles.moodText}>
               You had&nbsp;
-              <Text style={styles.moodTextDark}>{item.sleepHours} hours </Text>
+              <Text style={styles.moodTextDark}>
+                {item.sleepHours} hours&nbsp;
+              </Text>
               of sleep.
             </Text>
           </View>
@@ -81,23 +86,23 @@ export default function MoodCardItem({
         </View>
       </View>
       {/* tip of the day */}
-      <View style={[styles.gap10, styles.p10]}>
-        <View style={styles.row}>
-          <Text style={styles.tipHeading}>Find Peace</Text>
-          <View style={styles.rowGap1}>
-            <Entypo
-              name="light-bulb"
-              size={18}
-              color={Colors.GOLDEN}
-              style={{ lineHeight: 24 }}
-            />
-            <Text style={styles.tipButtonText}>Tip</Text>
+      {shouldDisplayQuote && (
+        <View style={[styles.gap10, styles.p10]}>
+          <View style={styles.row}>
+            <Text style={styles.tipHeading}>{item.quote.heading}</Text>
+            <View style={styles.rowGap1}>
+              <Entypo
+                name="light-bulb"
+                size={18}
+                color={Colors.GOLDEN}
+                style={{ lineHeight: 24 }}
+              />
+              <Text style={styles.tipButtonText}>Tip</Text>
+            </View>
           </View>
+          <Text style={styles.tipText}>{item.quote.quote}</Text>
         </View>
-        <Text style={styles.tipText}>
-          Spend time outdoors, surrounded by greenery and fresh air.
-        </Text>
-      </View>
+      )}
     </View>
   );
 }
@@ -139,6 +144,9 @@ const styles = StyleSheet.create({
   moodName: {
     lineHeight: 24,
     ...Bold(20, Colors.BLACK_DARK),
+  },
+  day: {
+    ...Regular(16, Colors.BLACK_DARK),
   },
   moodText: {
     ...Regular(16, Colors.BLACK_DARK),

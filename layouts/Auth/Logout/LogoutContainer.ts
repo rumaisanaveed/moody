@@ -1,12 +1,11 @@
 import { Logout } from "@/apis/Auth";
-import { useState } from "react";
+import { toast } from "sonner-native";
 
 export default function useLogout() {
-  const [error, setError] = useState<string | null>(null);
   const { isPending, mutate: logout } = Logout({
     onError(error) {
       console.log("Error in logout", error);
-      setError("Logout failed. Please try again.");
+      toast.error("Logout Failed. Please try again.");
     },
   });
 
@@ -15,7 +14,6 @@ export default function useLogout() {
   };
 
   return {
-    error,
     isPending,
     handleLogout,
   };

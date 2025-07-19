@@ -1,26 +1,28 @@
+import { emotions } from "@/constants/Data";
 import useChooseEmotions from "@/layouts/ChooseEmotions/ChooseEmotionsContainer";
 import React from "react";
 import ChooseItems from "./components/ChooseItems";
 
 const ChooseEmotions = () => {
   const {
-    selectedEmotions,
-    handleAddEmotion,
-    handleClearEmotion,
-    handleClearEmotions,
+    selectedItems,
+    handleAddItem,
+    handleClearItem,
+    handleClearItems,
     handleClick,
   } = useChooseEmotions();
 
   return (
     <ChooseItems
-      selectedItems={selectedEmotions}
-      handleAddItem={handleAddEmotion}
-      handleClearItem={handleClearEmotion}
-      handleClearItems={handleClearEmotions}
+      items={emotions}
+      selectedItems={selectedItems}
+      handleAddItem={handleAddItem}
+      handleClearItem={handleClearItem}
+      handleClearItems={handleClearItems}
       sectionHeading="Choose the emotions that make you feel neutral"
       sectionText="Select upto 3 emotions"
       buttonTitle="Continue"
-      disabled={selectedEmotions.length !== 3}
+      disabled={selectedItems.length !== 3}
       navigationPath="/(app)/(mood-track)/choose-reasons"
       listTitle="Emotions"
       handleBtnClick={handleClick}

@@ -1,4 +1,11 @@
-export interface MoodEntry {
+export interface IQuote {
+  id: string;
+  quote: string;
+  heading: string;
+  reasons: string[];
+}
+
+export interface IMoodEntry {
   id: string;
   mood: string;
   moodText: string;
@@ -10,5 +17,17 @@ export interface MoodEntry {
   note: string;
   timestamp: any;
   dayOfWeek: string;
-  // add other fields as needed
+  quote: IQuote;
+}
+
+export interface IBarChartData {
+  mood: string;
+  moodScore: number;
+  sleepScore: number;
+  day: string;
+}
+
+export interface IMoodData {
+  moodEntries: IMoodEntry[];
+  barChartsData: IBarChartData[];
 }
