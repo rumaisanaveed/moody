@@ -1,50 +1,100 @@
-# Welcome to your Expo app 👋
+# 😁 Moody
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A beautifully designed mobile app that lets users track their moods over the last 7 days and receive quotes based on how they feel. Users can also add personal notes and monitor their sleep and mood patterns through charts — helping them better understand and manage their emotional well-being.
 
-## Get started
+## 🛠 Tech Stack
 
-1. Install dependencies
+- Expo  
+- React Native  
+- TypeScript  
+- Stylesheets for styling  
+- Firebase (Authentication + Database)  
+- Yup (Schema validation)  
+- React Hook Form (Form handling)  
+- Zustand (State management)  
+- React Query (API management)  
+- React Native MMKV (Key-value storage)  
+- React Native Keyboard Controller (Keyboard handling)  
+- React Native Gifted Charts (Bar charts)  
+- Sonner Native (Toasts)  
+- React Native Skeleton Kit (Loading placeholders)
+
+## 💡 The Idea
+
+I wanted to build something fun to apply what I had been learning in React Native. I stumbled upon the idea of mood tracking and found it both useful and exciting. After some exploration, I discovered a Figma file showcasing a similar concept, which inspired the UI design. I customized the features and visuals and started building from there.
+
+## ✨ Features
+
+- Authentication using Firebase  
+- Mood tracking for the past 7 days  
+- Add personal notes  
+- View motivational quotes based on your mood  
+- Graphs for mood and sleep tracking  
+- Light/dark mode ready (currently defaulting to light mode)  
+- Real-time updates using Firebase and React Query
+
+## 🧩 How It Works
+
+1. After authentication, users are taken to the **Home Screen** where they can view their mood history from the past 7 days.
+2. Tapping the add button initiates a flow:
+   - **Choose Mood**
+   - **Choose Emotions** (select 3)
+   - **Choose Reasons** (select 3)
+   - **Hours of Sleep**
+   - **Add Note**
+3. Once completed, the user is redirected to the Home Screen with the updated mood entry displayed.
+4. The **Stats Screen** presents two bar charts showing mood and sleep data from the last 7 days.
+
+## 🧠 What I Learned
+
+- Mobile development differs significantly from web — especially in terms of UX expectations, component structures, and styling approaches.
+- How to use **Yup** effectively with **React Hook Form** for reusable and maintainable form validations.
+- Understood the power of **Zustand** and why it’s a great alternative to Context API or Redux for simpler and more performant state management.
+- Learned how fonts are handled in React Native (a very different process from web).
+- Strengthened my knowledge of **TypeScript** within a React Native environment.
+- Learned to implement authentication using Firebase and structure user-specific collections.
+- Gained experience in writing scalable and modular code, especially with the use of reusable components and hooks.
+- Discovered how to query specific ranges (like last 7 days) from Firebase collections.
+- Realized the importance of debugging and testing cross-device behaviors in mobile apps.
+- 
+## 🔧 How to Run the Project
+
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/rumaisanaveed/moody.git
+   cd moody
+   ````
+
+2. **Install dependencies**
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. **Clean and rebuild the project**
 
    ```bash
-   npx expo start
+   npx expo prebuild --clean
    ```
 
-In the output, you'll find options to open the app in a
+4. **Connect your phone** (with USB debugging enabled) and run:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+   ```bash
+   npm run android
+   ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   This will build and install the app APK on your device and launch it.
+   
+## 🤝 How to Contribute
 
-## Get a fresh project
+If you want to add more features in this app:
 
-When you're ready, run:
+1. Fork the repository
+2. Create a new branch and make your changes
+3. Submit a pull request with a clear description of what you did
 
-```bash
-npm run reset-project
-```
+All suggestions, improvements, and feedback are welcome! 🧡
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🎥 Demo Video
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+https://github.com/user-attachments/assets/0aa09956-3c85-44de-bcf5-a6d8742f286c
